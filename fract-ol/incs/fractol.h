@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
+/*   Updated: 2023/01/05 16:05:09 by xcharra          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FRACTOL_H
+# define FRACTOL_H
+
+# include <unistd.h>
+# include <stdlib.h>
+// # include <limits.h>
+# include <math.h>
+# include "libft.h"
+# include <mlx.h>
+
+#endif
