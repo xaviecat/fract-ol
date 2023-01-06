@@ -34,7 +34,7 @@ CFLAGS			=	-Wall -Wextra -Werror #-fsanitize=address -g3
 all				:	mklib $(NAME)
 
 $(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) $(MLX)
-				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_D)$(LIB) $(MLX_D)$(MLX) $(MLX_F)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_D)$(LIB) $(MLX_D)$(MLX) $(MLX_F)
 				@echo "Fractol OK"
 
 $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(LIB_D)
