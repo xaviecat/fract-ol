@@ -35,34 +35,28 @@ all				:	mklib $(NAME)
 
 $(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) $(MLX)
 				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_D)$(LIB) $(MLX_D)$(MLX) $(MLX_F)
-				@echo "Fractol OK"
+
 
 $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(LIB_D)
-				@$(CC) $(CFLAGS) -I$(HEAD_D) -I$(LIB_H) -I$(MLX_D) -c $< -o $@
-				@echo "Compiling objs ..."
+				$(CC) $(CFLAGS) -I$(HEAD_D) -I$(LIB_H) -I$(MLX_D) -c $< -o $@
 
 $(OBJS_D)		:
-				@mkdir -p $(OBJS_D)
+				mkdir -p $(OBJS_D)
 
 $(MLX)			:	$(MLX_D)
-				@make -j -C $(MLX_D) 2>/dev/null >/dev/null
-				@echo "MLX OK"
+				make -j -C $(MLX_D) 2>/dev/null >/dev/null
 
 mklib			:
-				@make -j -C $(LIB_D) >/dev/null
-				@echo "LIBFT OK"
+				make -j -C $(LIB_D) >/dev/null
 
 clean			:
-				@$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
-				@make clean -C $(LIB_D) >/dev/null
-				@echo "clean OK"
-
+				$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
+				make clean -C $(LIB_D) >/dev/null
 
 fclean			:	clean
-				@$(RM) $(NAME) $(OBJS_B)
-				@make fclean -C $(LIB_D) >/dev/null
-				@make clean -C $(MLX_D) >/dev/null
-				@echo "fclean OK"
+				$(RM) $(NAME) $(OBJS_B)
+				make fclean -C $(LIB_D) >/dev/null
+				make clean -C $(MLX_D) >/dev/null
 
 re				:	fclean all
 
