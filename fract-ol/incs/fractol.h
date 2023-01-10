@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/09 17:56:53 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/10 18:00:19 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <math.h>
 # include "libft.h"
 # include <mlx.h>
-# define WIDTH	1920 /* x */
-# define HEIGHT	1080 /* y */
-# define IMAX	1000
+# define WIDTH	1000 //1920 /* x */
+# define HEIGHT	1000 //1080 /* y */
+# define IMAX	100
 
 typedef struct s_img
 {
@@ -39,5 +39,19 @@ typedef struct s_complex
 	double	xtemp;
 	double	y;
 }			t_complex;
+
+typedef struct s_coor
+{
+	double	x;
+	double	y;
+}			t_coor;
+
+typedef struct s_cplx
+{
+	t_coor	pixel;
+	t_coor	z;
+	t_coor	c;
+	t_coor	tmp;
+}			t_cplx;
 
 #endif
