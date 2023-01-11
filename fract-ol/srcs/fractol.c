@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:24 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/11 17:58:34 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 18:12:12 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int	process_key(int keycode, void *param)
 	}
 	else
 		ft_printf("Key : %d\n", keycode);
-	//julia_set(&merg->setup->img, *merg->setup);
 	return (0);
 }
 
@@ -91,6 +90,7 @@ void	julia_set(t_cplx *julia)
 	size_t	i;
 
 	printf("j %f, %f\n", julia->c.x, julia->c.y);
+	julia->px.x = 0;
 	while (julia->px.x < WIDTH)
 	{
 		julia->px.y = 0;
@@ -108,6 +108,7 @@ void	julia_set(t_cplx *julia)
 		}
 		julia->px.x++;
 	}
+	mlx_put_image_to_window(julia->set.lnk.mlx, julia->set.lnk.mlx_win, julia->set.img.img, 0, 0);
 	printf("je %f, %f\n", julia->c.x, julia->c.y);
 }
 
@@ -115,30 +116,27 @@ void	init_set(t_mlxsetup *set)
 {
 	set->lnk.mlx = mlx_init();
 	set->lnk.mlx_win = mlx_new_window(set->lnk.mlx, WIDTH, HEIGHT, "fract-ol");
-	// !printf("%p\n", set->lnk.mlx_win);
 	set->img.img = mlx_new_image(set->lnk.mlx, WIDTH, HEIGHT);
 	set->img.addr = mlx_get_data_addr(set->img.img, \
 	&set->img.bits_per_pixel, &set->img.line_length, &set->img.endian);
 }
 
-void	display_julia(t_mlxsetup *set)
+void	display_julia(t_mlxsetup *set, t_cplx *julia)
 {
-	t_cplx	julia;
-
-	julia_init(&julia, set);
-	julia_set(&julia);
-	printf("%f, %f, %p\n", julia.c.x, julia.c.y, julia.set.lnk.mlx_win);
-	mlx_hook(julia.set.lnk.mlx_win, ON_KEYDOWN, 0L, &process_key, &julia);
-	printf("%f, %f, %p\n", julia.c.x, julia.c.y, julia.set.lnk.mlx_win);
-	mlx_put_image_to_window(set->lnk.mlx, set->lnk.mlx_win, set->img.img, 0, 0);
+	julia_init(julia, set);
+	julia_set(julia);
+	// printf("%f, %f, %p\n", julia->c.x, julia->c.y, julia->set.lnk.mlx_win);
+	mlx_hook(julia->set.lnk.mlx_win, ON_KEYDOWN, 0L, &process_key, julia);
+	// printf("%f, %f, %p\n", julia->c.x, julia->c.y, julia->set.lnk.mlx_win);
 }
 
 int	main(void)
 {
 	t_mlxsetup	set;
+	t_cplx		julia;
 
 	init_set(&set);
-	display_julia(&set);
+	display_julia(&set, &julia);
 	// mlx_hook(set.lnk.mlx_win, ON_KEYDOWN, 0, process_key, &set.lnk);
 	// mlx_key_hook(set.lnk.mlx_win, test, &set.lnk);
 	mlx_loop(set.lnk.mlx);
