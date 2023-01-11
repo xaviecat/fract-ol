@@ -6,168 +6,140 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:24 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/10 18:24:45 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 17:58:34 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+double	zmod2(t_coor *pixels);
+void	julia_init(t_cplx *julia, t_mlxsetup *set);
+void	julia_z_incr(t_cplx *julia);
+void	julia_iter(t_cplx *julia);
+int		process_key(int keycode, void *julia);
+void	julia_set(t_cplx *julia);
+void	init_set(t_mlxsetup *set);
+
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x > WIDTH || x < 0 || y > WIDTH || y < 0)
+		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
-/*
-double	zmod2(t_complex *pixels)
-{
-	return (pow(pixels->x, 2) + pow(pixels->y, 2));
-}
-
-double	xjulia(t_complex *pixels, double cx)
-{
-	return (pow(pixels->x, 2) - pow(pixels->y, 2) + cx);
-}
-
-double	yjulia(t_complex *pixels, double cy)
-{
-	return (2 * pixels->x * pixels->y + cy);
-}
-*/
-void	axes(t_img *img)
-{
-	size_t	i = 0;
-	size_t	j = 0;
-
-	while (i < WIDTH)
-	{
-		my_mlx_pixel_put(img, i, HEIGHT / 2, 0x00FF0000);
-		my_mlx_pixel_put(img, i, HEIGHT / 4, 0x00FF0000);
-		my_mlx_pixel_put(img, i, HEIGHT * 3 / 4, 0x00FF0000);
-		i++;
-	}
-	while (j < HEIGHT)
-	{
-		my_mlx_pixel_put(img, WIDTH / 2, j, 0x00FF0000);
-		my_mlx_pixel_put(img, WIDTH / 4, j, 0x00FF0000);
-		my_mlx_pixel_put(img, WIDTH * 3 / 4, j, 0x00FF0000);
-		j++;
-	}
-}
-/*
-void	julia_set(t_img *img)
-{
-	t_complex	pix;
-	t_complex	z;
-	t_complex	c;
-	size_t		i;
-	double		range;
-
-	pix.x = 0;
-	c.x = -0.4;
-	c.y = 0.6;
-	range = 2;
-	while (pix.x < WIDTH)
-	{
-		pix.y = 0;
-		while (pix.y < HEIGHT)
-		{
-			z.x = (((pix.x / (WIDTH / (range * 2))) - range) * WIDTH / HEIGHT);
-			z.y = (range - (pix.y / (HEIGHT / (range * 2))));
-			i = 0;
-			while (zmod2(&z) < 4. && i < IMAX)
-			{
-				z.xtemp = xjulia(&z, c.x);
-				z.y = yjulia(&z, c.y);
-				z.x = z.xtemp;
-				i++;
-			}
-			if (i == IMAX)
-				my_mlx_pixel_put(img, pix.x, pix.y, 0x0068c2d3);
-			else
-				my_mlx_pixel_put(img, pix.x, pix.y, 0x00a2dcc7 * i / 10000);
-			pix.y++;
-		}
-		pix.x++;
-	}
-	// !axes(img);
-} */
 
 double	zmod2(t_coor *pixels)
 {
 	return (pow(pixels->x, 2) + pow(pixels->y, 2));
 }
 
-double	xjulia(t_coor *pixels, double cx)
+void	julia_init(t_cplx *julia, t_mlxsetup *set)
 {
-	return (pow(pixels->x, 2) - pow(pixels->y, 2) + cx);
+	julia->px.x = 0;
+	julia->px.y = 0;
+	julia->c.x = -0.4;
+	julia->c.y = 0.6;
+	julia->r = 2;
+	julia->set = *set;
 }
 
-double	yjulia(t_coor *pixels, double cy)
+void	julia_z_incr(t_cplx *julia)
 {
-	return (2 * pixels->x * pixels->y + cy);
+	julia->z.x = ((julia->px.x / (WIDTH / (julia->r * 2)) - julia->r) \
+	* WIDTH / HEIGHT);
+	julia->z.y = (julia->r - (julia->px.y / (HEIGHT / (julia->r * 2))));
 }
 
-t_cplx	julia_init(void)
+void	julia_iter(t_cplx *julia)
 {
-	t_cplx	julia;
-
-	julia.pixel.x = 0;
-	julia.z.x = 0;
-	julia.z.y = 0;
-	julia.c.x = -0.4;
-	julia.c.y = 0.6;
-	return (julia);
+	julia->tmp.x = pow(julia->z.x, 2) - pow(julia->z.y, 2) + julia->c.x;
+	julia->z.y = 2 * julia->z.x * julia->z.y + julia->c.y;
+	julia->z.x = julia->tmp.x;
 }
 
-void	julia_set(t_img *img)
+int	process_key(int keycode, void *param)
 {
-	t_cplx	julia;
-	double	range;
+	t_cplx	*julia;
+
+	julia = (t_cplx *)param;
+	printf("p %f, %f\n", julia->c.x, julia->c.y);
+	if (keycode == 53)
+	{
+		// mlx_clear_window(merg->setup->lnk.mlx, merg->setup->lnk.mlx_win);
+		// mlx_destroy_window(merg->setup->lnk.mlx, merg->setup->lnk.mlx_win);
+		exit(EXIT_SUCCESS);
+		return (0);
+	}
+	else if (keycode == 126)
+	{
+		printf("%f\n", julia->c.y);
+		julia->c.y += 0.01;
+		printf("%f\n", julia->c.y);
+		julia_set(julia);
+	}
+	else
+		ft_printf("Key : %d\n", keycode);
+	//julia_set(&merg->setup->img, *merg->setup);
+	return (0);
+}
+
+void	julia_set(t_cplx *julia)
+{
 	size_t	i;
 
-	julia = julia_init();
-	range = 2;
-	i = 0;
-	while (julia.pixel.x < WIDTH)
+	printf("j %f, %f\n", julia->c.x, julia->c.y);
+	while (julia->px.x < WIDTH)
 	{
-		julia.pixel.y = 0;
-		while (julia.pixel.y < HEIGHT)
+		julia->px.y = 0;
+		while (julia->px.y < HEIGHT)
 		{
-			julia.z.x = (((julia.pixel.x / (WIDTH / (range * 2))) - range) * WIDTH / HEIGHT);
-			julia.z.y = (range - (julia.pixel.y / (HEIGHT / (range * 2))));
-			i = 0;
-			while (zmod2(&julia.z) < 4. && i < IMAX)
-			{
-				julia.tmp.x = xjulia(&julia.z, julia.c.x);
-				julia.z.y = yjulia(&julia.z, julia.c.x);
-				julia.z.x = julia.tmp.x;
-				i++;
-			}
+			julia_z_incr(julia);
+			i = 1;
+			while (zmod2(&julia->z) < 4. && i < IMAX && i++)
+				julia_iter(julia);
 			if (i == IMAX)
-				my_mlx_pixel_put(img, julia.pixel.x, julia.pixel.y, 0x0068c2d3);
+				my_mlx_pixel_put(&julia->set.img, julia->px.x, julia->px.y, 0x0068c2d3);
 			else
-				my_mlx_pixel_put(img, julia.pixel.x, julia.pixel.y, 0x00a2dcc7 * i / 10000);
-			julia.pixel.y++;
+				my_mlx_pixel_put(&julia->set.img, julia->px.x, julia->px.y, 0x00a2dcc7 * i / 10000);
+			julia->px.y++;
 		}
-		julia.pixel.x++;
+		julia->px.x++;
 	}
-	axes(img);
+	printf("je %f, %f\n", julia->c.x, julia->c.y);
+}
+
+void	init_set(t_mlxsetup *set)
+{
+	set->lnk.mlx = mlx_init();
+	set->lnk.mlx_win = mlx_new_window(set->lnk.mlx, WIDTH, HEIGHT, "fract-ol");
+	// !printf("%p\n", set->lnk.mlx_win);
+	set->img.img = mlx_new_image(set->lnk.mlx, WIDTH, HEIGHT);
+	set->img.addr = mlx_get_data_addr(set->img.img, \
+	&set->img.bits_per_pixel, &set->img.line_length, &set->img.endian);
+}
+
+void	display_julia(t_mlxsetup *set)
+{
+	t_cplx	julia;
+
+	julia_init(&julia, set);
+	julia_set(&julia);
+	printf("%f, %f, %p\n", julia.c.x, julia.c.y, julia.set.lnk.mlx_win);
+	mlx_hook(julia.set.lnk.mlx_win, ON_KEYDOWN, 0L, &process_key, &julia);
+	printf("%f, %f, %p\n", julia.c.x, julia.c.y, julia.set.lnk.mlx_win);
+	mlx_put_image_to_window(set->lnk.mlx, set->lnk.mlx_win, set->img.img, 0, 0);
 }
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
+	t_mlxsetup	set;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "fract-ol");
-	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-	&img.line_length, &img.endian);
-	julia_set(&img);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	init_set(&set);
+	display_julia(&set);
+	// mlx_hook(set.lnk.mlx_win, ON_KEYDOWN, 0, process_key, &set.lnk);
+	// mlx_key_hook(set.lnk.mlx_win, test, &set.lnk);
+	mlx_loop(set.lnk.mlx);
 }

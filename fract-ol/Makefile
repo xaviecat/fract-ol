@@ -29,7 +29,7 @@ CC				=	cc
 
 RM				=	rm -rf
 
-CFLAGS			=	-Wall -Wextra -Werror -g #-fsanitize=address -g3
+CFLAGS			=	-Wall -Wextra -Werror  -g3 -fsanitize=address
 
 all				:	mklib $(NAME)
 

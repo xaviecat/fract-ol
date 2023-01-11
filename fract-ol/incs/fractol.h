@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/10 18:00:19 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 18:04:14 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@
 // # include <limits.h>
 # include <math.h>
 # include "libft.h"
-# include <mlx.h>
+# include "mlx.h"
 # define WIDTH	1000 //1920 /* x */
 # define HEIGHT	1000 //1080 /* y */
 # define IMAX	100
+
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*mlx_win;
+}			t_vars;
 
 typedef struct s_img
 {
@@ -32,14 +38,11 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }			t_img;
-
-typedef struct s_complex
+typedef struct s_mlxsetup
 {
-	double	x;
-	double	xtemp;
-	double	y;
-}			t_complex;
-
+	t_vars	lnk;
+	t_img	img;
+}			t_mlxsetup;
 typedef struct s_coor
 {
 	double	x;
@@ -48,10 +51,22 @@ typedef struct s_coor
 
 typedef struct s_cplx
 {
-	t_coor	pixel;
-	t_coor	z;
-	t_coor	c;
-	t_coor	tmp;
-}			t_cplx;
+	t_coor		px;
+	t_coor		z;
+	t_coor		c;
+	t_coor		tmp;
+	double		r;
+	t_mlxsetup	set;
+}				t_cplx;
+
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
 
 #endif
