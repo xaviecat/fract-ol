@@ -16,6 +16,8 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 {
 	julia->px.x = 0;
 	julia->px.y = 0;
+	julia->z.x = 0;
+	julia->z.y = 0;
 	julia->c.x = -0.4;
 	julia->c.y = 0.6;
 	julia->r = 2;
@@ -56,7 +58,7 @@ void	julia_set(t_cplx *julia)
 				0x00FFFFFF);
 			else
 				my_mlx_pixel_put(&julia->set.img, julia->px.x, julia->px.y, \
-				0x00a2dcc7/*  * i / 10000 */);
+				0x00a2dcc7 * i / 10000);
 			julia->px.y++;
 		}
 		julia->px.x++;
