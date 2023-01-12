@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/11 18:04:14 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/12 17:22:43 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "mlx.h"
 # define WIDTH	1000 //1920 /* x */
 # define HEIGHT	1000 //1080 /* y */
-# define IMAX	100
 
 typedef struct s_vars
 {
@@ -42,6 +41,7 @@ typedef struct s_mlxsetup
 {
 	t_vars	lnk;
 	t_img	img;
+	t_img	img2;
 }			t_mlxsetup;
 typedef struct s_coor
 {
@@ -56,10 +56,12 @@ typedef struct s_cplx
 	t_coor		c;
 	t_coor		tmp;
 	double		r;
+	double		imax;
 	t_mlxsetup	set;
 }				t_cplx;
 
-enum {
+enum
+{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
@@ -68,5 +70,20 @@ enum {
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
+
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	init_set(t_mlxsetup *set);
+
+double	zmod2(t_coor *pixels);
+
+void	julia_init(t_cplx *julia, t_mlxsetup *set);
+void	julia_z_incr(t_cplx *julia);
+void	julia_iter(t_cplx *julia);
+void	julia_set(t_cplx *julia);
+void	julia_display(t_mlxsetup *set, t_cplx *julia);
+
+void	hooks(t_cplx *julia);
+int		process_key(int keycode, t_cplx	*julia);
+int		clear_close_exit(t_cplx *julia);
 
 #endif

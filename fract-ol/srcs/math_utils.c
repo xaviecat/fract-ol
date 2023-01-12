@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 14:50:24 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/12 15:03:46 by xcharra          ###   ########lyon.fr   */
+/*   Created: 2023/01/12 15:02:00 by xcharra           #+#    #+#             */
+/*   Updated: 2023/01/12 15:02:10 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(void)
+double	zmod2(t_coor *pixels)
 {
-	t_mlxsetup	set;
-	t_cplx		julia;
-
-	init_set(&set);
-	julia_display(&set, &julia);
-	mlx_loop(set.lnk.mlx);
+	return (pow(pixels->x, 2) + pow(pixels->y, 2));
 }

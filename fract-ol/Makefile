@@ -1,5 +1,9 @@
 SRCS			=	\
 					fractol.c\
+					hook.c\
+					julia.c\
+					math_utils.c\
+					mlx_utils.c\
 
 SRCS_D			=	srcs/
 
@@ -29,7 +33,7 @@ CC				=	cc
 
 RM				=	rm -rf
 
-CFLAGS			=	-Wall -Wextra -Werror  -g3 -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 
 all				:	mklib $(NAME)
 
