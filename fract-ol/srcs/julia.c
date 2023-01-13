@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/13 16:18:39 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/13 17:37:57 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 	julia->px.y = 0;
 	julia->z.x = 0;
 	julia->z.y = 0;
-	julia->c.x = /* 0.25; //-1;// */-0.4;
-	julia->c.y = /* 0;// */0.6;
+	julia->c.x = /* 0.25; //-1; */-0.4;
+	julia->c.y = /* 0; */0.6;
 	julia->r = 2;
-	julia->imax = 10;
+	julia->imax = 100;
 	julia->set = *set;
 }
 

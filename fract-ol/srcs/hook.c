@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/13 16:21:18 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/13 17:41:47 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	mouse_hook(int button, int x, int y, t_cplx	*julia)
 	(void)x;
 	(void)y;
 	if (button == 5)
-		julia->r /= 1.1, julia->imax *= 1.3;
+		julia->r /= 1.1;
 	else if (button == 4)
-		julia->r *= 1.1, julia->imax /= 1.3;
+		julia->r *= 1.1;
 	else
 		return (ft_printf("Key : %d\n", button));
 	julia_set(julia);
