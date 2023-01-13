@@ -15,9 +15,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 // # include <limits.h>
 # include <math.h>
+# include <pthread.h>
 # include "libft.h"
 # include "mlx.h"
 # define WIDTH	1000 //1920 /* x */
@@ -41,7 +41,6 @@ typedef struct s_mlxsetup
 {
 	t_vars	lnk;
 	t_img	img;
-	t_img	img2;
 }			t_mlxsetup;
 typedef struct s_coor
 {
@@ -51,7 +50,6 @@ typedef struct s_coor
 
 typedef struct s_cplx
 {
-	t_coor		px;
 	t_coor		z;
 	t_coor		c;
 	t_coor		tmp;
@@ -59,6 +57,16 @@ typedef struct s_cplx
 	double		imax;
 	t_mlxsetup	set;
 }				t_cplx;
+
+typedef struct s_thread
+{
+	t_cplx		*cplx;
+	size_t		i;
+	t_coor		px;
+	t_coor		z;
+	t_coor		tmp;
+	pthread_t	thread;
+}			t_thread;
 
 enum
 {
@@ -77,13 +85,15 @@ void	init_set(t_mlxsetup *set);
 double	zmod2(t_coor *pixels);
 
 void	julia_init(t_cplx *julia, t_mlxsetup *set);
-void	julia_z_incr(t_cplx *julia);
-void	julia_iter(t_cplx *julia);
+void	julia_z_incr(t_thread *julia);
+void	julia_iter(t_thread *julia);
 void	julia_set(t_cplx *julia);
+void	julia_calc(t_thread *julia);
 void	julia_display(t_mlxsetup *set, t_cplx *julia);
 
 void	hooks(t_cplx *julia);
 int		process_key(int keycode, t_cplx	*julia);
 int		clear_close_exit(t_cplx *julia);
 
+# include <stdio.h>
 #endif

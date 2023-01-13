@@ -33,7 +33,7 @@ int	process_key(int keycode, t_cplx	*julia)
 	else
 		return (ft_printf("Key : %d\n", keycode));
 	julia_set(julia);
-	mlx_put_image_to_window(julia->set.lnk.mlx, julia->set.lnk.mlx_win, \
+	mlx_put_image_to_window(&julia->set.lnk.mlx, julia->set.lnk.mlx_win, \
 	julia->set.img.img, 0, 0);
 	return (0);
 }
@@ -49,7 +49,7 @@ int	mouse_hook(int button, int x, int y, t_cplx	*julia)
 	else
 		return (ft_printf("Key : %d\n", button));
 	julia_set(julia);
-	mlx_put_image_to_window(julia->set.lnk.mlx, julia->set.lnk.mlx_win, \
+	mlx_put_image_to_window(&julia->set.lnk.mlx, julia->set.lnk.mlx_win, \
 	julia->set.img.img, 0, 0);
 	return (0);
 }
