@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/12 17:43:32 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/13 16:21:18 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	process_key(int keycode, t_cplx	*julia)
 	else if (keycode == 27)
 		julia->imax -= 10;
 	else if (keycode == 24)
-		julia->imax += 100;
+		julia->imax += 10;
 	else
 		return (ft_printf("Key : %d\n", keycode));
 	julia_set(julia);
@@ -43,9 +43,9 @@ int	mouse_hook(int button, int x, int y, t_cplx	*julia)
 	(void)x;
 	(void)y;
 	if (button == 5)
-		julia->r /= 1.1;
+		julia->r /= 1.1, julia->imax *= 1.3;
 	else if (button == 4)
-		julia->r *= 1.1;
+		julia->r *= 1.1, julia->imax /= 1.3;
 	else
 		return (ft_printf("Key : %d\n", button));
 	julia_set(julia);
@@ -60,4 +60,3 @@ void	hooks(t_cplx *julia)
 	mlx_hook(julia->set.lnk.mlx_win, ON_DESTROY, 0L, &clear_close_exit, julia);
 	mlx_mouse_hook(julia->set.lnk.mlx_win, mouse_hook, julia);
 }
-

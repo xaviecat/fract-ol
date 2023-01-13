@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/12 17:22:43 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/13 15:49:54 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <pthread.h>
 # include "libft.h"
 # include "mlx.h"
-# define WIDTH	1000 //1920 /* x */
-# define HEIGHT	1000 //1080 /* y */
+# define WIDTH	800 //1920 /* x */
+# define HEIGHT	800 //1080 /* y */
 
 typedef struct s_vars
 {
@@ -41,6 +41,7 @@ typedef struct s_mlxsetup
 {
 	t_vars	lnk;
 	t_img	img;
+	t_img	img2;
 }			t_mlxsetup;
 typedef struct s_coor
 {
@@ -50,6 +51,7 @@ typedef struct s_coor
 
 typedef struct s_cplx
 {
+	t_coor		px;
 	t_coor		z;
 	t_coor		c;
 	t_coor		tmp;
@@ -57,16 +59,6 @@ typedef struct s_cplx
 	double		imax;
 	t_mlxsetup	set;
 }				t_cplx;
-
-typedef struct s_thread
-{
-	t_cplx		*cplx;
-	size_t		i;
-	t_coor		px;
-	t_coor		z;
-	t_coor		tmp;
-	pthread_t	thread;
-}			t_thread;
 
 enum
 {
@@ -85,10 +77,9 @@ void	init_set(t_mlxsetup *set);
 double	zmod2(t_coor *pixels);
 
 void	julia_init(t_cplx *julia, t_mlxsetup *set);
-void	julia_z_incr(t_thread *julia);
-void	julia_iter(t_thread *julia);
+void	julia_z_incr(t_cplx *julia);
+void	julia_iter(t_cplx *julia);
 void	julia_set(t_cplx *julia);
-void	julia_calc(t_thread *julia);
 void	julia_display(t_mlxsetup *set, t_cplx *julia);
 
 void	hooks(t_cplx *julia);
