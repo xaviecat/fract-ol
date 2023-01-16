@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/13 15:49:54 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 17:04:13 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include <stdlib.h>
 // # include <limits.h>
 # include <math.h>
-# include <pthread.h>
 # include "libft.h"
 # include "mlx.h"
 # define WIDTH	800 //1920 /* x */
 # define HEIGHT	800 //1080 /* y */
+# define RATIO	WIDTH / HEIGHT
 
 typedef struct s_vars
 {
@@ -55,8 +55,10 @@ typedef struct s_cplx
 	t_coor		z;
 	t_coor		c;
 	t_coor		tmp;
+	t_coor		move;
 	double		r;
 	double		imax;
+	double		zoom;
 	t_mlxsetup	set;
 }				t_cplx;
 

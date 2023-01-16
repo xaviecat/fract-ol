@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   juliawomt.c                                        :+:      :+:    :+:   */
+/*   juliamt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:42:57 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/13 15:48:54 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 13:42:12 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+# include <pthread.h>
 typedef struct s_vars
 {
 	void	*mlx;
@@ -182,4 +183,3 @@ void	julia_display(t_mlxsetup *set, t_cplx *julia)
 	julia->set.img.img, 0, 0);
 	hooks(julia);
 }
-

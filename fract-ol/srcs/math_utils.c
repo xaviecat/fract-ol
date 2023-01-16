@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 15:02:00 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/12 15:02:10 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 10:51:34 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 double	zmod2(t_coor *pixels)
 {
-	return (pow(pixels->x, 2) + pow(pixels->y, 2));
+	return (pixels->x * pixels->x + pixels->y * pixels->y);
 }

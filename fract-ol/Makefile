@@ -23,35 +23,41 @@ LIB_D			=	libft/
 
 LIB_H			=	$(LIB_D)$(HEAD_D)
 
+LIB_A			=	$(LIB_D)$(LIB)
+
 MLX				=	libmlx.a
 
 MLX_D			=	mlx/
 
 MLX_F			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
+MLX_A			=	$(MLX_D)$(MLX)
+
 CC				=	cc
 
 RM				=	rm -rf
 
-CFLAGS			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS			=	 -Wall -Wextra -Werror -g3 #-o2 -march=native#-fsanitize=address
 
-all				:	mklib $(NAME)
+all				:	$(NAME)
 
-$(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) $(MLX)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_D)$(LIB) $(MLX_D)$(MLX) $(MLX_F)
+$(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)
 
 
-$(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(LIB_D)
+$(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(MLX_A) $(LIB_A)
 				$(CC) $(CFLAGS) -I$(HEAD_D) -I$(LIB_H) -I$(MLX_D) -c $< -o $@
 
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
 
-$(MLX)			:	$(MLX_D)
-				make -j -C $(MLX_D) 2>/dev/null >/dev/null
+$(MLX_A)		:	FORCE
+				make -j -C $(MLX_D) 2>/dev/null
 
-mklib			:
-				make -j -C $(LIB_D) >/dev/null
+$(LIB_A)		:	FORCE
+				make -j -C $(LIB_D)
+
+FORCE			:
 
 clean			:
 				$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
@@ -64,4 +70,4 @@ fclean			:	clean
 
 re				:	fclean all
 
-.PHONY			:	all clean fclean re mklib
+.PHONY			:	all clean fclean re mklib FORCE
