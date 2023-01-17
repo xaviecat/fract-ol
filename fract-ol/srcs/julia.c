@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/16 18:22:54 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 16:57:29 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 void	julia_init(t_cplx *julia, t_mlxsetup *set)
 {
+	julia->name = JULIA;
 	julia->px.x = 0;
 	julia->px.y = 0;
 	julia->z.x = 0;
 	julia->z.y = 0;
-	julia->c.x = /* 0.25; //-1; */-0.4;
-	julia->c.y = /* 0; */0.6;
+	julia->c.x = -0.4;/* 0.25; //-1; */
+	julia->c.y = 0.6;/* 0; */
 	julia->r = 2;
 	julia->imax = 100;
 	julia->zoom = 1;
 	julia->move.x = 0;
 	julia->move.y = 0;
 	julia->set = *set;
+	julia->imgprt = &julia->set.img;
+	julia->imgdsp = &julia->set.img2;
 }
 
 void	julia_z_incr(t_cplx *julia)
@@ -56,22 +59,22 @@ void	julia_set(t_cplx *julia)
 			while (zmod2(&julia->z) < 4. && i < julia->imax && i++)
 				julia_iter(julia);
 			if (i == julia->imax)
-				my_mlx_pixel_put(&julia->set.img, julia->px.x, julia->px.y, \
+				my_mlx_pixel_put(julia->imgprt, julia->px.x, julia->px.y, \
 				0x00FFFFFF);
 			else
-				my_mlx_pixel_put(&julia->set.img, julia->px.x, julia->px.y, \
+				my_mlx_pixel_put(julia->imgprt, julia->px.x, julia->px.y, \
 				0x00a2dcc7 * i / 10000); //0x00a2dcc7 / i / 10000
 			julia->px.y++;
 		}
 		julia->px.x++;
 	}
+	switchimg(julia);
 }
 
-void	julia_display(t_mlxsetup *set, t_cplx *julia)
+void	julia_display(t_mlxsetup *set, t_cplx *fractal)
 {
-	julia_init(julia, set);
-	julia_set(julia);
-	mlx_put_image_to_window(julia->set.lnk.mlx, julia->set.lnk.mlx_win, \
-	julia->set.img.img, 0, 0);
-	hooks(julia);
+	julia_init(fractal, set);
+	julia_set(fractal);
+	mlx_put_image_to_window(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
+	fractal->imgdsp->img, 0, 0);
 }

@@ -2,6 +2,8 @@ SRCS			=	\
 					fractol.c\
 					hook.c\
 					julia.c\
+					mendelbrot.c\
+					burning_ship.c\
 					math_utils.c\
 					mlx_utils.c\
 
@@ -37,16 +39,20 @@ CC				=	cc
 
 RM				=	rm -rf
 
-CFLAGS			=	 -Wall -Wextra -Werror -g3 #-o2 -march=native#-fsanitize=address
+CFLAGS			+=	-Wall -Wextra -Werror
+
+ASAN_F			=	#-fsanitize=address -g3
+
+OPTI_F			=	-o2 -march=native #-fomit-frame-pointer -funroll-loops
 
 all				:	$(NAME)
+				./fractol Mendelbrot
 
-$(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)
-
+$(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) Makefile
+				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)
 
 $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(MLX_A) $(LIB_A)
-				$(CC) $(CFLAGS) -I$(HEAD_D) -I$(LIB_H) -I$(MLX_D) -c $< -o $@
+				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -I$(HEAD_D) -I$(LIB_H) -I$(MLX_D) -c $< -o $@
 
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
@@ -61,13 +67,13 @@ FORCE			:
 
 clean			:
 				$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
-				make clean -C $(LIB_D) >/dev/null
+#make clean -C $(LIB_D) >/dev/null
 
 fclean			:	clean
 				$(RM) $(NAME) $(OBJS_B)
-				make fclean -C $(LIB_D) >/dev/null
-				make clean -C $(MLX_D) >/dev/null
+#make fclean -C $(LIB_D) >/dev/null
+#make clean -C $(MLX_D) >/dev/null
 
 re				:	fclean all
 
-.PHONY			:	all clean fclean re mklib FORCE
+.PHONY			:	all clean fclean re mklib FORCE f opt

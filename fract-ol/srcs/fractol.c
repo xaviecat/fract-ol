@@ -6,18 +6,38 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:24 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/16 16:12:19 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 16:55:12 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(void)
+void	choose_fractal(int name)
 {
 	t_mlxsetup	set;
-	t_cplx		julia;
+	t_cplx		fractal;
 
 	init_set(&set);
-	julia_display(&set, &julia);
+	if (name == JULIA)
+		julia_display(&set, &fractal);
+	else if (name == MENDEL)
+		mendel_display(&set, &fractal);
+	else if (name == BURNING)
+		burning_display(&set, &fractal);
+	hooks(&fractal);
 	mlx_loop(set.lnk.mlx);
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc == 1)
+		return (ft_putstr(ERROR));
+	if (ft_strncmp(argv[1], "Julia", 4) == 0)
+		choose_fractal(JULIA);
+	else if (ft_strncmp(argv[1], "Mendelbrot", 9) == 0)
+		choose_fractal(MENDEL);
+	else if (ft_strncmp(argv[1], "Burning Ship", 11) == 0)
+		choose_fractal(BURNING);
+	else
+		return (ft_putstr(ERROR));
 }

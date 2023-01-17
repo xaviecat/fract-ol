@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/16 17:04:13 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 17:51:17 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@
 # include <math.h>
 # include "libft.h"
 # include "mlx.h"
-# define WIDTH	800 //1920 /* x */
-# define HEIGHT	800 //1080 /* y */
-# define RATIO	WIDTH / HEIGHT
+# define WIDTH	500 //1920 /* x */
+# define HEIGHT	500 //1080 /* y */
+# define RATIO	WIDTH / HEIGHT //!attention
+# define ERROR	"Please enter a valid argument among these:\n\
+-Julia\n\
+-Mendelbrot\n\
+-Burning Ship\n"
 
 typedef struct s_vars
 {
@@ -49,8 +53,17 @@ typedef struct s_coor
 	double	y;
 }			t_coor;
 
+/* FRACTAL NAMES */
+typedef enum e_name
+{
+	JULIA,
+	MENDEL,
+	BURNING,
+}t_name;
+
 typedef struct s_cplx
 {
+	t_name		name;
 	t_coor		px;
 	t_coor		z;
 	t_coor		c;
@@ -60,6 +73,9 @@ typedef struct s_cplx
 	double		imax;
 	double		zoom;
 	t_mlxsetup	set;
+	t_img		*imgtmp;
+	t_img		*imgprt;
+	t_img		*imgdsp;
 }				t_cplx;
 
 enum
@@ -72,21 +88,63 @@ enum
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
+/* KEY HOOK */
+enum
+{
+	UP = 126,
+	DOWN = 125,
+	RIGHT = 124,
+	LEFT = 123,
+	PLUS = 24,
+	MINUS = 27,
+	ESC = 53,
+	B = 11,
+	W = 13,
+	A = 0,
+	S = 1,
+	D = 2,
+};
+
+/* MOUSE HOOK */
+enum
+{
+	LEFTC = 1,
+	RIGHTC = 2,
+	SCROLLC = 3,
+	SCROLLDOWN = 4,
+	SCROLLUP = 5,
+};
+
+
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	init_set(t_mlxsetup *set);
 
 double	zmod2(t_coor *pixels);
+void	switchimg(t_cplx *fractal);
 
 void	julia_init(t_cplx *julia, t_mlxsetup *set);
 void	julia_z_incr(t_cplx *julia);
 void	julia_iter(t_cplx *julia);
 void	julia_set(t_cplx *julia);
-void	julia_display(t_mlxsetup *set, t_cplx *julia);
+void	julia_display(t_mlxsetup *set, t_cplx *fractal);
 
-void	hooks(t_cplx *julia);
-int		process_key(int keycode, t_cplx	*julia);
-int		clear_close_exit(t_cplx *julia);
+void	mendel_init(t_cplx *mendel, t_mlxsetup *set);
+void	mendel_z_incr(t_cplx *mendel);
+void	mendel_iter(t_cplx *mendel);
+void	mendel_set(t_cplx *mendel);
+void	mendel_display(t_mlxsetup *set, t_cplx *fractal);
+
+void	burning_init(t_cplx *mendel, t_mlxsetup *set);
+void	burning_z_incr(t_cplx *mendel);
+void	burning_iter(t_cplx *mendel);
+void	burning_set(t_cplx *mendel);
+void	burning_display(t_mlxsetup *set, t_cplx *fractal);
+
+void	hooks(t_cplx *fractal);
+int		process_key(int keycode, t_cplx	*fractal);
+int		mouse_hook(int button, int x, int y, t_cplx	*fractal);
+int		clear_close_exit(t_cplx *fractal);
 
 # include <stdio.h>
 #endif
