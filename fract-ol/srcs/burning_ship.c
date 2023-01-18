@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 10:23:08 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 17:57:20 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	burning_init(t_cplx *burning, t_mlxsetup *set)
 	burning->r = 2;
 	burning->imax = 100;
 	burning->zoom = 1;
-	burning->move.x = 0;
+	burning->move.x = -0.7;
 	burning->move.y = 0;
 	burning->set = *set;
 	burning->imgprt = &burning->set.img;
@@ -49,7 +49,7 @@ void	burning_iter(t_cplx *burning)
 	burning->z.x = burning->tmp.x;
 }
 
-void	burning_set(t_cplx *burning)
+void	burning_ship(t_cplx *burning)
 {
 	size_t	i;
 
@@ -79,7 +79,7 @@ void	burning_set(t_cplx *burning)
 void	burning_display(t_mlxsetup *set, t_cplx *fractal)
 {
 	burning_init(fractal, set);
-	burning_set(fractal);
+	burning_ship(fractal);
 	mlx_put_image_to_window(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
 	hooks(fractal);

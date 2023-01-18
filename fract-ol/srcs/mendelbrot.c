@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 15:29:19 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 17:57:24 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	mendel_init(t_cplx *mendel, t_mlxsetup *set)
 	mendel->px.y = 0;
 	mendel->z.x = 0;
 	mendel->z.y = 0;
-	mendel->r = 1.6;
+	mendel->r = 2;
 	mendel->imax = 100;
 	mendel->zoom = 1;
 	mendel->move.x = -0.7;

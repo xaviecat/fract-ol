@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 10:23:45 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 17:14:19 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 	julia->move.x = 0;
 	julia->move.y = 0;
 	julia->set = *set;
+	julia->pow = 2;
 	julia->imgprt = &julia->set.img;
 	julia->imgdsp = &julia->set.img2;
 }
@@ -41,9 +42,8 @@ void	julia_z_incr(t_cplx *julia)
 
 void	julia_iter(t_cplx *julia)
 {
-	julia->tmp.x = julia->z.x * julia->z.x - julia->z.y * julia->z.y + \
-	julia->c.x;
-	julia->z.y = 2 * julia->z.x * julia->z.y + julia->c.y;
+	julia->tmp.x = rcplxpow(julia->z, julia->pow) + julia->c.x;
+	julia->z.y = icplxpow(julia->z, julia->pow) + julia->c.y;
 	julia->z.x = julia->tmp.x;
 }
 

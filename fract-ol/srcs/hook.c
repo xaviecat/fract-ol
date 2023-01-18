@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 15:30:52 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 17:55:11 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	process_key(int keycode, t_cplx	*fractal)
 		fractal->c.x += 0.01;
 	else if (keycode == LEFT)
 		fractal->c.x -= 0.01;
-	else if (keycode == B && fractal->name == JULIA)
+	else if ((keycode == B && fractal->name == JULIA) || keycode == 18)
 		julia_init(fractal, &fractal->set);
-	else if (keycode == B && fractal->name == MENDEL)
+	else if ((keycode == B && fractal->name == MENDEL) || keycode == 19)
 		mendel_init(fractal, &fractal->set);
-	else if (keycode == B && fractal->name == BURNING)
+	else if ((keycode == B && fractal->name == BURNING) || keycode == 20)
 		burning_init(fractal, &fractal->set);
 	else if (keycode == MINUS)
 		fractal->imax -= 10;
@@ -53,7 +53,7 @@ int	process_key(int keycode, t_cplx	*fractal)
 	else if (fractal->name == MENDEL)
 		mendel_set(fractal);
 	else if (fractal->name == BURNING)
-		burning_set(fractal);
+		burning_ship(fractal);
 	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
 	return (0);
@@ -74,7 +74,7 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 	else if (fractal->name == MENDEL)
 		mendel_set(fractal);
 	else if (fractal->name == BURNING)
-		burning_set(fractal);
+		burning_ship(fractal);
 	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
 	return (0);

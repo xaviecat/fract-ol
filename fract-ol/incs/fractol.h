@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 15:28:27 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 17:54:57 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	mendel_display(t_mlxsetup *set, t_cplx *fractal);
 void	burning_init(t_cplx *mendel, t_mlxsetup *set);
 void	burning_z_incr(t_cplx *mendel);
 void	burning_iter(t_cplx *mendel);
-void	burning_set(t_cplx *mendel);
+void	burning_ship(t_cplx *mendel);
 void	burning_display(t_mlxsetup *set, t_cplx *fractal);
 
 void	hooks(t_cplx *fractal);
