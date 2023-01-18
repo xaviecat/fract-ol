@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/17 17:33:06 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 15:29:19 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,27 @@ void	mendel_init(t_cplx *mendel, t_mlxsetup *set)
 	mendel->move.x = -0.7;
 	mendel->move.y = 0;
 	mendel->set = *set;
+	mendel->pow = 2;
 	mendel->imgprt = &mendel->set.img;
 	mendel->imgdsp = &mendel->set.img2;
 }
 
 void	mendel_z_incr(t_cplx *mendel)
 {
-	mendel->z.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * mendel->zoom * RATIO + mendel->move.x);
-	mendel->z.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * mendel->zoom + mendel->move.y);
-	mendel->c.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * mendel->zoom * RATIO + mendel->move.x);
-	mendel->c.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * mendel->zoom + mendel->move.y);
+	mendel->z.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
+	mendel->zoom * RATIO + mendel->move.x);
+	mendel->z.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \
+	mendel->zoom + mendel->move.y);
+	mendel->c.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
+	mendel->zoom * RATIO + mendel->move.x);
+	mendel->c.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \
+	mendel->zoom + mendel->move.y);
 }
 
 void	mendel_iter(t_cplx *mendel)
 {
-	mendel->tmp.x = mendel->z.x * mendel->z.x - mendel->z.y * mendel->z.y + mendel->c.x;
-	mendel->z.y = 2 * mendel->z.x * mendel->z.y + mendel->c.y;
+	mendel->tmp.x = rcplxpow(mendel->z, mendel->pow) + mendel->c.x;
+	mendel->z.y = icplxpow(mendel->z, mendel->pow) + mendel->c.y;
 	mendel->z.x = mendel->tmp.x;
 }
 

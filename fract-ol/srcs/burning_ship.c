@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/17 16:58:17 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 10:23:08 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,21 @@ void	burning_init(t_cplx *burning, t_mlxsetup *set)
 
 void	burning_z_incr(t_cplx *burning)
 {
-	burning->z.x = ((2 * burning->r * burning->px.x / WIDTH - burning->r) * burning->zoom * RATIO + burning->move.x);
-	burning->z.y = ((burning->r - 2 * burning->r * burning->px.y / HEIGHT) * burning->zoom + burning->move.y);
-	burning->c.x = ((2 * burning->r * burning->px.x / WIDTH - burning->r) * burning->zoom * RATIO + burning->move.x);
-	burning->c.y = ((burning->r - 2 * burning->r * burning->px.y / HEIGHT) * burning->zoom + burning->move.y);
+	burning->z.x = ((2 * burning->r * burning->px.x / WIDTH - burning->r) \
+	* burning->zoom * RATIO + burning->move.x);
+	burning->z.y = ((burning->r - 2 * burning->r * burning->px.y / HEIGHT) \
+	* burning->zoom + burning->move.y);
+	burning->c.x = ((2 * burning->r * burning->px.x / WIDTH - burning->r) \
+	* burning->zoom * RATIO + burning->move.x);
+	burning->c.y = ((burning->r - 2 * burning->r * burning->px.y / HEIGHT) \
+	* burning->zoom + burning->move.y);
 }
 
 void	burning_iter(t_cplx *burning)
 {
-	burning->tmp.x = burning->z.x * burning->z.x - burning->z.y * burning->z.y + burning->c.x;
-	burning->z.y = 2 * fabs(burning->z.x * burning->z.y) * - 1 + burning->c.y;
+	burning->tmp.x = burning->z.x * burning->z.x - burning->z.y * burning->z.y \
+	+ burning->c.x;
+	burning->z.y = 2 * fabs(burning->z.x * burning->z.y) * -1 + burning->c.y;
 	burning->z.x = burning->tmp.x;
 }
 

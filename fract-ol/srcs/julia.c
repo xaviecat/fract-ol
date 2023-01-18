@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/17 16:57:29 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 10:23:45 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,16 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 
 void	julia_z_incr(t_cplx *julia)
 {
-	julia->z.x = ((2 * julia->r * julia->px.x / WIDTH - julia->r) * julia->zoom * RATIO + julia->move.x);
-	julia->z.y = ((julia->r - 2 * julia->r * julia->px.y / HEIGHT) * julia->zoom + julia->move.y);
+	julia->z.x = ((2 * julia->r * julia->px.x / WIDTH - julia->r) * \
+	julia->zoom * RATIO + julia->move.x);
+	julia->z.y = ((julia->r - 2 * julia->r * julia->px.y / HEIGHT) * \
+	julia->zoom + julia->move.y);
 }
 
 void	julia_iter(t_cplx *julia)
 {
-	julia->tmp.x = julia->z.x * julia->z.x - julia->z.y * julia->z.y + julia->c.x;
+	julia->tmp.x = julia->z.x * julia->z.x - julia->z.y * julia->z.y + \
+	julia->c.x;
 	julia->z.y = 2 * julia->z.x * julia->z.y + julia->c.y;
 	julia->z.x = julia->tmp.x;
 }

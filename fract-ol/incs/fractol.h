@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/17 17:51:17 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 15:28:27 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_cplx
 	double		r;
 	double		imax;
 	double		zoom;
+	size_t		pow;
 	t_mlxsetup	set;
 	t_img		*imgtmp;
 	t_img		*imgprt;
@@ -121,6 +122,9 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	init_set(t_mlxsetup *set);
 
 double	zmod2(t_coor *pixels);
+double	ft_pow(double nbr, size_t pow);
+double	rcplxpow(t_coor z, size_t power);
+double	icplxpow(t_coor z, size_t power);
 void	switchimg(t_cplx *fractal);
 
 void	julia_init(t_cplx *julia, t_mlxsetup *set);

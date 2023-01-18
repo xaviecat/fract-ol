@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/17 17:47:22 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 15:30:52 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int	process_key(int keycode, t_cplx	*fractal)
 		fractal->imax -= 10;
 	else if (keycode == PLUS)
 		fractal->imax += 10;
+	else if (keycode == 33)
+		fractal->pow -= 1;
+	else if (keycode == 30)
+		fractal->pow += 1;
 	else if (keycode == D)
 		fractal->move.x += 0.1 * fractal->zoom;
 	else if (keycode == A)
