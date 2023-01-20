@@ -6,11 +6,27 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 17:55:11 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 18:12:06 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	display_fratcal(t_cplx	*fractal)
+{
+	if (fractal->name == JULIA)
+		julia_set(fractal);
+	else if (fractal->name == MENDEL)
+		mendel_set(fractal);
+	else if (fractal->name == BURNING)
+		burning_ship(fractal);
+	else if (fractal->name == LEAF)
+		leaf_set(fractal);
+	else if (fractal->name == LEAFT)
+		leaft_set(fractal);
+	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
+	fractal->imgdsp->img, 0, 0);
+}
 
 int	process_key(int keycode, t_cplx	*fractal)
 {
@@ -24,12 +40,16 @@ int	process_key(int keycode, t_cplx	*fractal)
 		fractal->c.x += 0.01;
 	else if (keycode == LEFT)
 		fractal->c.x -= 0.01;
-	else if ((keycode == B && fractal->name == JULIA) || keycode == 18)
+	else if ((keycode == B && fractal->name == JULIA) || keycode == ONE)
 		julia_init(fractal, &fractal->set);
-	else if ((keycode == B && fractal->name == MENDEL) || keycode == 19)
+	else if ((keycode == B && fractal->name == MENDEL) || keycode == TWO)
 		mendel_init(fractal, &fractal->set);
-	else if ((keycode == B && fractal->name == BURNING) || keycode == 20)
+	else if ((keycode == B && fractal->name == BURNING) || keycode == THREE)
 		burning_init(fractal, &fractal->set);
+	else if ((keycode == B && fractal->name == LEAF) || keycode == FOUR)
+		leaf_init(fractal, &fractal->set);
+	else if ((keycode == B && fractal->name == LEAFT) || keycode == FIVE)
+		leaft_init(fractal, &fractal->set);
 	else if (keycode == MINUS)
 		fractal->imax -= 10;
 	else if (keycode == PLUS)
@@ -48,14 +68,7 @@ int	process_key(int keycode, t_cplx	*fractal)
 		fractal->move.y -= 0.1 * fractal->zoom;
 	else
 		return (ft_printf("Key : %d\n", keycode));
-	if (fractal->name == JULIA)
-		julia_set(fractal);
-	else if (fractal->name == MENDEL)
-		mendel_set(fractal);
-	else if (fractal->name == BURNING)
-		burning_ship(fractal);
-	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
-	fractal->imgdsp->img, 0, 0);
+	display_fratcal(fractal);
 	return (0);
 }
 
@@ -69,14 +82,7 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 		fractal->zoom /= 1.1;
 	else
 		return (ft_printf("Key : %d\n", button));
-	if (fractal->name == JULIA)
-		julia_set(fractal);
-	else if (fractal->name == MENDEL)
-		mendel_set(fractal);
-	else if (fractal->name == BURNING)
-		burning_ship(fractal);
-	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
-	fractal->imgdsp->img, 0, 0);
+	display_fratcal(fractal);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:24 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/17 16:55:12 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 18:16:21 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	choose_fractal(int name)
 		mendel_display(&set, &fractal);
 	else if (name == BURNING)
 		burning_display(&set, &fractal);
+	else if (name == LEAF)
+		leaf_display(&set, &fractal);
+	else if (name == LEAFT)
+		leaft_display(&set, &fractal);
 	hooks(&fractal);
 	mlx_loop(set.lnk.mlx);
 }
@@ -38,6 +42,10 @@ int	main(int argc, char **argv)
 		choose_fractal(MENDEL);
 	else if (ft_strncmp(argv[1], "Burning Ship", 11) == 0)
 		choose_fractal(BURNING);
+	else if (ft_strncmp(argv[1], "Leaf", 11) == 0)
+		choose_fractal(LEAF);
+	else if (ft_strncmp(argv[1], "Leaft", 11) == 0)
+		choose_fractal(LEAFT);
 	else
 		return (ft_putstr(ERROR));
 }

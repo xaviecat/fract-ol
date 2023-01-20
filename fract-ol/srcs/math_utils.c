@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 15:02:00 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 17:58:53 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 18:10:01 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,42 @@ double	ft_pow(double nbr, size_t ft_pow)
 	while (ft_pow && ft_pow--)
 		res *= nbr;
 	return (res);
+}
+
+double	rcplxdiv(t_coor top, t_coor bot)
+{
+	return ((top.x * bot.x) / \
+	(ft_pow(bot.x, 2) + ft_pow(bot.y, 2)) + \
+	(top.y * bot.y) / \
+	(ft_pow(bot.x, 2) + ft_pow(bot.y, 2)));
+}
+
+double	icplxdiv(t_coor top, t_coor bot)
+{
+	return ((bot.x * top.y) / \
+	(ft_pow(bot.x, 2) + ft_pow(bot.y, 2)) - \
+	(top.x * bot.y) / \
+	(ft_pow(bot.x, 2) + ft_pow(bot.y, 2)));
+}
+
+double	rcplxcos(t_coor top, t_coor bot)
+{
+	return (cos(rcplxdiv(top, bot)) * cosh(icplxdiv(top, bot)));
+}
+
+double	icplxcos(t_coor top, t_coor bot)
+{
+	return (-sin(rcplxdiv(top, bot)) * sinh(icplxdiv(top, bot)));
+}
+
+double	rcplxsin(t_coor top, t_coor bot)
+{
+	return (sin(rcplxdiv(top, bot)) * cosh(icplxdiv(top, bot)));
+}
+
+double	icplxsin(t_coor top, t_coor bot)
+{
+	return (cos(rcplxdiv(top, bot)) * sinh(icplxdiv(top, bot)));
 }
 
 double	rcplxpow2(t_coor z, size_t power)

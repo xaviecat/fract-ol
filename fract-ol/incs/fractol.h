@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/18 17:54:57 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 18:15:00 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef enum e_name
 	JULIA,
 	MENDEL,
 	BURNING,
+	LEAF,
+	LEAFT,
 }t_name;
 
 typedef struct s_cplx
@@ -104,8 +106,12 @@ enum
 	A = 0,
 	S = 1,
 	D = 2,
+	ONE = 18,
+	TWO = 19,
+	THREE = 20,
+	FOUR = 21,
+	FIVE = 23,
 };
-
 /* MOUSE HOOK */
 enum
 {
@@ -116,16 +122,20 @@ enum
 	SCROLLUP = 5,
 };
 
-
-
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	init_set(t_mlxsetup *set);
+void	switchimg(t_cplx *fractal);
 
 double	zmod2(t_coor *pixels);
 double	ft_pow(double nbr, size_t pow);
 double	rcplxpow(t_coor z, size_t power);
 double	icplxpow(t_coor z, size_t power);
-void	switchimg(t_cplx *fractal);
+double	rcplxdiv(t_coor top, t_coor bot);
+double	icplxdiv(t_coor top, t_coor bot);
+double	rcplxcos(t_coor top, t_coor bot);
+double	icplxcos(t_coor top, t_coor bot);
+double	rcplxsin(t_coor top, t_coor bot);
+double	icplxsin(t_coor top, t_coor bot);
 
 void	julia_init(t_cplx *julia, t_mlxsetup *set);
 void	julia_z_incr(t_cplx *julia);
@@ -144,6 +154,18 @@ void	burning_z_incr(t_cplx *mendel);
 void	burning_iter(t_cplx *mendel);
 void	burning_ship(t_cplx *mendel);
 void	burning_display(t_mlxsetup *set, t_cplx *fractal);
+
+void	leaf_init(t_cplx *leaf, t_mlxsetup *set);
+void	leaf_z_incr(t_cplx *leaf);
+void	leaf_iter(t_cplx *leaf);
+void	leaf_set(t_cplx *leaf);
+void	leaf_display(t_mlxsetup *set, t_cplx *fractal);
+
+void	leaft_init(t_cplx *leaft, t_mlxsetup *set);
+void	leaft_z_incr(t_cplx *leaft);
+void	leaft_iter(t_cplx *leaft);
+void	leaft_set(t_cplx *leaft);
+void	leaft_display(t_mlxsetup *set, t_cplx *fractal);
 
 void	hooks(t_cplx *fractal);
 int		process_key(int keycode, t_cplx	*fractal);
