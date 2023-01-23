@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/20 18:15:00 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 17:46:28 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-// # include <limits.h>
+# include <limits.h>
 # include <math.h>
 # include "libft.h"
 # include "mlx.h"
 # define WIDTH	500 //1920 /* x */
 # define HEIGHT	500 //1080 /* y */
+# define DBLMAX	1000000000000000000000.
 # define RATIO	WIDTH / HEIGHT //!attention
 # define ERROR	"Please enter a valid argument among these:\n\
 -Julia\n\
 -Mendelbrot\n\
--Burning Ship\n"
+-Burning Ship\n\
+-Leaf\n\
+-Leaft\n"
 
 typedef struct s_vars
 {
@@ -61,6 +64,7 @@ typedef enum e_name
 	BURNING,
 	LEAF,
 	LEAFT,
+	NEWTON,
 }t_name;
 
 typedef struct s_cplx
@@ -70,6 +74,7 @@ typedef struct s_cplx
 	t_coor		z;
 	t_coor		c;
 	t_coor		tmp;
+	t_coor		old;
 	t_coor		move;
 	double		r;
 	double		imax;
@@ -111,6 +116,7 @@ enum
 	THREE = 20,
 	FOUR = 21,
 	FIVE = 23,
+	SIX = 22,
 };
 /* MOUSE HOOK */
 enum
@@ -166,6 +172,12 @@ void	leaft_z_incr(t_cplx *leaft);
 void	leaft_iter(t_cplx *leaft);
 void	leaft_set(t_cplx *leaft);
 void	leaft_display(t_mlxsetup *set, t_cplx *fractal);
+
+void	newton_init(t_cplx *newton, t_mlxsetup *set);
+void	newton_z_incr(t_cplx *newton);
+void	newton_iter(t_cplx *newton);
+void	newton_set(t_cplx *newton);
+void	newton_display(t_mlxsetup *set, t_cplx *fractal);
 
 void	hooks(t_cplx *fractal);
 int		process_key(int keycode, t_cplx	*fractal);

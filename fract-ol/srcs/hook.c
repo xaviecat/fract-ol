@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/20 18:12:06 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 17:46:13 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	display_fratcal(t_cplx	*fractal)
 		leaf_set(fractal);
 	else if (fractal->name == LEAFT)
 		leaft_set(fractal);
+	else if (fractal->name == NEWTON)
+		newton_set(fractal);
 	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
 }
@@ -50,10 +52,16 @@ int	process_key(int keycode, t_cplx	*fractal)
 		leaf_init(fractal, &fractal->set);
 	else if ((keycode == B && fractal->name == LEAFT) || keycode == FIVE)
 		leaft_init(fractal, &fractal->set);
-	else if (keycode == MINUS)
+	else if ((keycode == B && fractal->name == NEWTON) || keycode == SIX)
+		newton_init(fractal, &fractal->set);
+	else if (keycode == MINUS && fractal->name != NEWTON)
 		fractal->imax -= 10;
-	else if (keycode == PLUS)
+	else if (keycode == PLUS && fractal->name != NEWTON)
 		fractal->imax += 10;
+	else if (keycode == MINUS && fractal->name == NEWTON && fractal->imax >= 10.)
+		fractal->imax = fractal->imax / 10;
+	else if (keycode == PLUS && fractal->name == NEWTON && fractal->imax <= DBLMAX)
+		fractal->imax = fractal->imax * 10;
 	else if (keycode == 33)
 		fractal->pow -= 1;
 	else if (keycode == 30)
