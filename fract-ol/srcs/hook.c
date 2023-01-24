@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/23 17:46:13 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 17:54:53 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,29 @@ int	process_key(int keycode, t_cplx	*fractal)
 
 int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 {
-	(void)x;
-	(void)y;
 	if (button == SCROLLUP)
+	{
 		fractal->zoom *= 1.1;
+		fractal->move.x -= ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) \
+		* 0.1 * fractal->zoom;
+		fractal->move.y -= (fractal->r - 2 * fractal->r * y / HEIGHT) * 0.1 * \
+		fractal->zoom;
+	}
 	else if (button == SCROLLDOWN)
+	{
 		fractal->zoom /= 1.1;
+		fractal->move.x += ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) \
+		* 0.1 * fractal->zoom;
+		fractal->move.y += (fractal->r - 2 * fractal->r * y / HEIGHT) * 0.1 * \
+		fractal->zoom;
+	}
+	else if (button == LEFTC)
+	{
+		fractal->c.x = ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) \
+		* fractal->zoom;
+		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * \
+		fractal->zoom;
+	}
 	else
 		return (ft_printf("Key : %d\n", button));
 	display_fratcal(fractal);
@@ -98,5 +115,6 @@ void	hooks(t_cplx *fractal)
 {
 	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 0L, &process_key, fractal);
 	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, &clear_close_exit, fractal);
+	//mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEDOWN, 0L, &move_julia, fractal);
 	mlx_mouse_hook(fractal->set.lnk.mlx_win, mouse_hook, fractal);
 }

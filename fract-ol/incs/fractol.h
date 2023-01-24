@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/23 17:46:28 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 14:35:53 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ typedef struct s_cplx
 	t_coor		px;
 	t_coor		z;
 	t_coor		c;
+	double		a;
+	double		b;
+	double		cc;
+	double		d;
 	t_coor		tmp;
 	t_coor		old;
 	t_coor		move;
