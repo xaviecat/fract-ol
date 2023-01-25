@@ -7,6 +7,7 @@ SRCS			=	\
 					leaf.c\
 					leaft.c\
 					newton.c\
+					nova.c\
 					math_utils.c\
 					mlx_utils.c\
 

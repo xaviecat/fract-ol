@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/24 14:35:53 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 18:39:41 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <math.h>
 # include "libft.h"
 # include "mlx.h"
-# define WIDTH	500 //1920 /* x */
-# define HEIGHT	500 //1080 /* y */
+# define WIDTH	500//1920 // /* x */
+# define HEIGHT	500//1080 // /* y */
 # define DBLMAX	1000000000000000000000.
 # define RATIO	WIDTH / HEIGHT //!attention
 # define ERROR	"Please enter a valid argument among these:\n\
@@ -28,7 +28,9 @@
 -Mendelbrot\n\
 -Burning Ship\n\
 -Leaf\n\
--Leaft\n"
+-Leaft\n\
+-Newton\n\
+-Nova\n"
 
 typedef struct s_vars
 {
@@ -65,6 +67,7 @@ typedef enum e_name
 	LEAF,
 	LEAFT,
 	NEWTON,
+	NOVA,
 }t_name;
 
 typedef struct s_cplx
@@ -73,13 +76,16 @@ typedef struct s_cplx
 	t_coor		px;
 	t_coor		z;
 	t_coor		c;
+	t_coor		q;
+	t_coor		tmp;
+	t_coor		old;
+	t_coor		move;
+	t_coor		mouse;
+	int			state;
 	double		a;
 	double		b;
 	double		cc;
 	double		d;
-	t_coor		tmp;
-	t_coor		old;
-	t_coor		move;
 	double		r;
 	double		imax;
 	double		zoom;
@@ -121,6 +127,10 @@ enum
 	FOUR = 21,
 	FIVE = 23,
 	SIX = 22,
+	SEVEN = 26,
+	EIGHT = 28,
+	NINE = 25,
+	ZERO = 29,
 };
 /* MOUSE HOOK */
 enum
@@ -182,6 +192,12 @@ void	newton_z_incr(t_cplx *newton);
 void	newton_iter(t_cplx *newton);
 void	newton_set(t_cplx *newton);
 void	newton_display(t_mlxsetup *set, t_cplx *fractal);
+
+void	nova_init(t_cplx *nova, t_mlxsetup *set);
+void	nova_z_incr(t_cplx *nova);
+void	nova_iter(t_cplx *nova);
+void	nova_set(t_cplx *nova);
+void	nova_display(t_mlxsetup *set, t_cplx *fractal);
 
 void	hooks(t_cplx *fractal);
 int		process_key(int keycode, t_cplx	*fractal);

@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/20 11:47:06 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 17:56:17 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	mendel_init(t_cplx *mendel, t_mlxsetup *set)
 
 void	mendel_z_incr(t_cplx *mendel)
 {
-	mendel->z.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
-	mendel->zoom * RATIO + mendel->move.x);
-	mendel->z.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \
-	mendel->zoom + mendel->move.y);
+	mendel->z.x = 0/* ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
+	mendel->zoom * RATIO + mendel->move.x) */;
+	mendel->z.y = 0/* ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \
+	mendel->zoom + mendel->move.y) */;
 	mendel->c.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
 	mendel->zoom * RATIO + mendel->move.x);
 	mendel->c.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \

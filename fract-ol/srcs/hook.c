@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/24 17:54:53 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 18:41:04 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	process_key(int keycode, t_cplx	*fractal)
 		leaft_init(fractal, &fractal->set);
 	else if ((keycode == B && fractal->name == NEWTON) || keycode == SIX)
 		newton_init(fractal, &fractal->set);
+	else if ((keycode == B && fractal->name == NOVA) || keycode == SEVEN)
+		nova_init(fractal, &fractal->set);
 	else if (keycode == MINUS && fractal->name != NEWTON)
 		fractal->imax -= 10;
 	else if (keycode == PLUS && fractal->name != NEWTON)
@@ -82,6 +84,8 @@ int	process_key(int keycode, t_cplx	*fractal)
 
 int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 {
+	if (button == LEFTC)
+		fractal->state = 1;
 	if (button == SCROLLUP)
 	{
 		fractal->zoom *= 1.1;
@@ -98,23 +102,27 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 		fractal->move.y += (fractal->r - 2 * fractal->r * y / HEIGHT) * 0.1 * \
 		fractal->zoom;
 	}
-	else if (button == LEFTC)
+	else if (fractal->state == 1)
 	{
 		fractal->c.x = ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) \
 		* fractal->zoom;
 		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * \
 		fractal->zoom;
 	}
-	else
-		return (ft_printf("Key : %d\n", button));
+	if (button == RIGHTC)
+		fractal->state = 0;
+	// else
+	// 	return (ft_printf("Key : %d\n", button));
 	display_fratcal(fractal);
 	return (0);
 }
 
+
+
+
 void	hooks(t_cplx *fractal)
 {
-	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 0L, &process_key, fractal);
-	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, &clear_close_exit, fractal);
-	//mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEDOWN, 0L, &move_julia, fractal);
+	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 0L, process_key, fractal);
+	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, fractal);
 	mlx_mouse_hook(fractal->set.lnk.mlx_win, mouse_hook, fractal);
 }

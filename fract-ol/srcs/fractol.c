@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:24 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/23 15:51:39 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 17:28:13 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	choose_fractal(int name)
 		leaft_display(&set, &fractal);
 	else if (name == NEWTON)
 		newton_display(&set, &fractal);
+	else if (name == NOVA)
+		nova_display(&set, &fractal);
 	hooks(&fractal);
 	mlx_loop(set.lnk.mlx);
 }
@@ -50,6 +52,8 @@ int	main(int argc, char **argv)
 		choose_fractal(LEAFT);
 	else if (ft_strncmp(argv[1], "Newton", 11) == 0)
 		choose_fractal(NEWTON);
+	else if (ft_strncmp(argv[1], "Nova", 11) == 0)
+		choose_fractal(NOVA);
 	else
 		return (ft_putstr(ERROR));
 }
