@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 11:37:57 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/25 17:38:07 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:13:28 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@ void	newton_init(t_cplx *newton, t_mlxsetup *set)
 	newton->px.y = 0;
 	newton->z.x = 0;
 	newton->z.y = 0;
-	newton->q.x = 1;
-	newton->q.y = 0;
 	newton->r = 2;
-	newton->imax = 100;
+	newton->imax = 50;
 	newton->zoom = 1;
 	newton->move.x = 0;
 	newton->move.y = 0;
 	newton->set = *set;
-	newton->pow = 2;
+	newton->tol = 0.001;
 	newton->imgprt = &newton->set.img;
 	newton->imgdsp = &newton->set.img2;
 }
@@ -74,23 +72,23 @@ void	newton_set(t_cplx *newton)
 			newton_z_incr(newton);
 			i = 1;
 			newton->tmp.y = 1;
-			while (newton->tmp.y > 0.001 && i < newton->imax && i++)
+			while (newton->tmp.y > newton->tol && i < newton->imax && i++)
 				newton_iter(newton);
 			if (i == newton->imax)
 				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
 				0x00FF0000);
-			else if (newton->z.x <= 0.001 * -1)
+			else if (newton->z.x <= newton->tol * -1)
 				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x00ABBDFF + (i << 8)); //0x00a2dcc7 * i / 1000000
-			else if (newton->z.x >= 0.00001 * 1 && newton->z.y > 0)
+				0x00ABBDFF + (i << 8));
+			else if (newton->z.x >= newton->tol * 1 && newton->z.y > 0)
 				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x00894B77 + (i << 8)); //0x00a2dcc7 * i / 1000000
-			else if (newton->z.x >= 0.00001 * 1 && newton->z.y < 0)
+				0x00894B77 + (i << 8));
+			else if (newton->z.x >= newton->tol * 1 && newton->z.y < 0)
 				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x0099e1d9 + (i << 8)); //0x00a2dcc7 * i / 1000000
+				0x0099e1d9 + (i << 8));
 			else
 				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x00a2dcc7 * i / 1000000); //0x00a2dcc7 * i / 1000000
+				0x00a2dcc7 * i / 1000000);
 			newton->px.y++;
 		}
 		newton->px.x++;

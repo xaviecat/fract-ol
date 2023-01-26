@@ -1,15 +1,15 @@
-SRCS			=	\
-					fractol.c\
-					hook.c\
-					julia.c\
-					mendelbrot.c\
-					burning_ship.c\
-					leaf.c\
-					leaft.c\
-					newton.c\
-					nova.c\
-					math_utils.c\
-					mlx_utils.c\
+SRCS			=																\
+					fractol.c													\
+					hook.c														\
+					julia.c														\
+					mendelbrot.c												\
+					burning_ship.c												\
+					leaf.c														\
+					leaft.c														\
+					newton.c													\
+					nova.c														\
+					math_utils.c												\
+					mlx_utils.c													\
 
 SRCS_D			=	srcs/
 
@@ -50,7 +50,7 @@ ASAN_F			=	#-fsanitize=address -g3
 OPTI_F			=	-o2 -march=native #-fomit-frame-pointer -funroll-loops
 
 all				:	$(NAME)
-				./fractol Newton
+				./fractol Nova
 
 $(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) Makefile
 				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)

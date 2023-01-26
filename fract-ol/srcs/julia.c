@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/25 18:06:48 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:13:09 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	julia_z_incr(t_cplx *julia)
 
 void	julia_iter(t_cplx *julia)
 {
-	julia->tmp.x = /* ft_pow(julia->z.x * julia->z.x + julia->z.y * julia->z.y, julia->pow / 2) * cos(julia->pow * atan2(julia->z.y, julia->z.x)) */rcplxpow(julia->z, julia->pow) + julia->c.x;
-	julia->z.y = /* ft_pow(julia->z.x * julia->z.x + julia->z.y * julia->z.y, julia->pow / 2) * sin(julia->pow * atan2(julia->z.y, julia->z.x)) */icplxpow(julia->z, julia->pow) + julia->c.y;
+	julia->tmp.x = rcplxpow(julia->z, julia->pow) + julia->c.x;
+	julia->z.y = icplxpow(julia->z, julia->pow) + julia->c.y;
 	julia->z.x = julia->tmp.x;
 }
 
@@ -66,7 +66,7 @@ void	julia_set(t_cplx *julia)
 				0x00FFFFFF);
 			else
 				my_mlx_pixel_put(julia->imgprt, julia->px.x, julia->px.y, \
-				0x00a2dcc7 * i / 10000); //0x00a2dcc7 / i / 10000
+				0x00a2dcc7 * i / 10000);
 			julia->px.y++;
 		}
 		julia->px.x++;

@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 15:02:00 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/20 18:10:01 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:37:27 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,39 @@ double	zmod2(t_coor *pixels)
 	return (pixels->x * pixels->x + pixels->y * pixels->y);
 }
 
-double	ft_pow(double nbr, size_t ft_pow)
+double	ft_pow(double nbr, size_t pow)
 {
 	double	res;
 
 	res = 1;
-	while (ft_pow && ft_pow--)
+	while (pow && pow--)
 		res *= nbr;
 	return (res);
+	// if (pow == 1)
+	// 	return (nbr);
+	// else if (pow == 2)
+	// 	return (nbr * nbr);
+	// else if (pow == 3)
+	// 	return (nbr * nbr * nbr);
+	// else if (pow == 4)
+	// 	return (nbr * nbr * nbr * nbr);
+	// else if (pow == 5)
+	// 	return (nbr * nbr * nbr * nbr * nbr);
+	// else if (pow == 6)
+	// 	return (nbr * nbr * nbr * nbr * nbr * nbr);
+	// else if (pow == 7)
+	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr);
+	// else if (pow == 8)
+	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
+	// else if (pow == 9)
+	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
+	// else if (pow == 10)
+	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
+	// else if (pow == 11)
+	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
+	// else if (pow == 12)
+	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
+	return (1);
 }
 
 double	rcplxdiv(t_coor top, t_coor bot)

@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/25 17:56:17 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:11:54 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	mendel_init(t_cplx *mendel, t_mlxsetup *set)
 	mendel->r = 2;
 	mendel->imax = 100;
 	mendel->zoom = 1;
-	mendel->move.x = -0.7;
+	mendel->move.x = 0;
 	mendel->move.y = 0;
 	mendel->set = *set;
 	mendel->pow = 2;
@@ -32,10 +32,8 @@ void	mendel_init(t_cplx *mendel, t_mlxsetup *set)
 
 void	mendel_z_incr(t_cplx *mendel)
 {
-	mendel->z.x = 0/* ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
-	mendel->zoom * RATIO + mendel->move.x) */;
-	mendel->z.y = 0/* ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \
-	mendel->zoom + mendel->move.y) */;
+	mendel->z.x = 0;
+	mendel->z.y = 0;
 	mendel->c.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
 	mendel->zoom * RATIO + mendel->move.x);
 	mendel->c.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \
@@ -44,6 +42,7 @@ void	mendel_z_incr(t_cplx *mendel)
 
 void	mendel_iter(t_cplx *mendel)
 {
+
 	mendel->tmp.x = rcplxpow(mendel->z, mendel->pow) + mendel->c.x;
 	mendel->z.y = icplxpow(mendel->z, mendel->pow) + mendel->c.y;
 	mendel->z.x = mendel->tmp.x;
@@ -68,7 +67,7 @@ void	mendel_set(t_cplx *mendel)
 				0x00FFFFFF);
 			else
 				my_mlx_pixel_put(mendel->imgprt, mendel->px.x, mendel->px.y, \
-				0x00a2dcc7 * i / 10000); //0x00a2dcc7 / i / 10000
+				0x00a2dcc7 * i / 10000);
 			mendel->px.y++;
 		}
 		mendel->px.x++;

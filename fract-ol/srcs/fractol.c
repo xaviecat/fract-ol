@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:24 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/25 17:28:13 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 13:56:05 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ int	main(int argc, char **argv)
 {
 	if (argc == 1)
 		return (ft_putstr(ERROR));
-	if (ft_strncmp(argv[1], "Julia", 4) == 0)
+	if (ft_strncmp(argv[1], "Julia", 6) == 0)
 		choose_fractal(JULIA);
-	else if (ft_strncmp(argv[1], "Mendelbrot", 9) == 0)
+	else if (ft_strncmp(argv[1], "Mendelbrot", 11) == 0)
 		choose_fractal(MENDEL);
-	else if (ft_strncmp(argv[1], "Burning Ship", 11) == 0)
+	else if (ft_strncmp(argv[1], "Burning Ship", 13) == 0)
 		choose_fractal(BURNING);
-	else if (ft_strncmp(argv[1], "Leaf", 11) == 0)
+	else if (ft_strncmp(argv[1], "Leaf", 5) == 0)
 		choose_fractal(LEAF);
-	else if (ft_strncmp(argv[1], "Leaft", 11) == 0)
+	else if (ft_strncmp(argv[1], "Leaft", 6) == 0)
 		choose_fractal(LEAFT);
-	else if (ft_strncmp(argv[1], "Newton", 11) == 0)
+	else if (ft_strncmp(argv[1], "Newton", 7) == 0)
 		choose_fractal(NEWTON);
-	else if (ft_strncmp(argv[1], "Nova", 11) == 0)
+	else if (ft_strncmp(argv[1], "Nova", 5) == 0)
 		choose_fractal(NOVA);
 	else
 		return (ft_putstr(ERROR));

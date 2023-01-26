@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/25 18:39:41 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/26 17:05:16 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <math.h>
 # include "libft.h"
 # include "mlx.h"
-# define WIDTH	500//1920 // /* x */
-# define HEIGHT	500//1080 // /* y */
+# define WIDTH	800//1920 // /* x */
+# define HEIGHT	800//1080 // /* y */
 # define DBLMAX	1000000000000000000000.
 # define RATIO	WIDTH / HEIGHT //!attention
 # define ERROR	"Please enter a valid argument among these:\n\
@@ -82,6 +82,7 @@ typedef struct s_cplx
 	t_coor		move;
 	t_coor		mouse;
 	int			state;
+	double		tol;
 	double		a;
 	double		b;
 	double		cc;
@@ -121,6 +122,12 @@ enum
 	A = 0,
 	S = 1,
 	D = 2,
+	I = 34,
+	K = 40,
+	L = 37,
+	J = 38,
+	CBL = 33,
+	CBR = 30,
 	ONE = 18,
 	TWO = 19,
 	THREE = 20,
