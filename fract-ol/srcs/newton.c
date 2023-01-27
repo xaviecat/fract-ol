@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 11:37:57 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/26 17:13:28 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 11:56:38 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	newton_init(t_cplx *newton, t_mlxsetup *set)
 {
 	newton->name = NEWTON;
+	newton->sname = SNEWTON;
 	newton->px.x = 0;
 	newton->px.y = 0;
 	newton->z.x = 0;

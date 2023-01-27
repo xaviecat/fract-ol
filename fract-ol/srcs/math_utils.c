@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 15:02:00 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/26 17:37:27 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 17:30:25 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,32 @@ double	zmod2(t_coor *pixels)
 	return (pixels->x * pixels->x + pixels->y * pixels->y);
 }
 
-double	ft_pow(double nbr, size_t pow)
+double	ft_pow(double x, size_t pow)
 {
-	double	res;
-
-	res = 1;
-	while (pow && pow--)
-		res *= nbr;
-	return (res);
-	// if (pow == 1)
-	// 	return (nbr);
-	// else if (pow == 2)
-	// 	return (nbr * nbr);
-	// else if (pow == 3)
-	// 	return (nbr * nbr * nbr);
-	// else if (pow == 4)
-	// 	return (nbr * nbr * nbr * nbr);
-	// else if (pow == 5)
-	// 	return (nbr * nbr * nbr * nbr * nbr);
-	// else if (pow == 6)
-	// 	return (nbr * nbr * nbr * nbr * nbr * nbr);
-	// else if (pow == 7)
-	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr);
-	// else if (pow == 8)
-	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
-	// else if (pow == 9)
-	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
-	// else if (pow == 10)
-	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
-	// else if (pow == 11)
-	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
-	// else if (pow == 12)
-	// 	return (nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr * nbr);
+	if (pow == 1)
+		return (x);
+	else if (pow == 2)
+		return (x * x);
+	else if (pow == 3)
+		return (x * x * x);
+	else if (pow == 4)
+		return (x * x * x * x);
+	else if (pow == 5)
+		return (x * x * x * x * x);
+	else if (pow == 6)
+		return (x * x * x * x * x * x);
+	else if (pow == 7)
+		return (x * x * x * x * x * x * x);
+	else if (pow == 8)
+		return (x * x * x * x * x * x * x * x);
+	else if (pow == 9)
+		return (x * x * x * x * x * x * x * x * x);
+	else if (pow == 10)
+		return (x * x * x * x * x * x * x * x * x * x);
+	else if (pow == 11)
+		return (x * x * x * x * x * x * x * x * x * x * x);
+	else if (pow == 12)
+		return (x * x * x * x * x * x * x * x * x * x * x * x);
 	return (1);
 }
 
@@ -164,4 +158,91 @@ double	icplxpow(t_coor z, size_t power)
 		return (5 * ft_pow(z.x, 4) * z.y - 10 * ft_pow(z.x, 2) * ft_pow(z.y, 3) \
 		+ ft_pow(z.y, 5));
 	return (icplxpow2(z, power));
+}
+static size_t	get_len(double n, long num, size_t len, size_t precision)
+{
+
+	if (num == 0)
+		len = 1;
+	while (num != 0)
+	{
+		len++;
+		num /= 10;
+	}
+	len += precision + 1;
+	if (n < 0)
+		len++;
+	return (len);
+}
+
+static size_t	get_int_part(char *str, double n, long num, size_t i)
+{
+	long	tmp;
+	size_t	ret;
+
+	num = (long)n;
+	tmp = num;
+	ret = 0;
+	while (tmp)
+	{
+		tmp /= 10;
+		ret++;
+	}
+	while (num != 0)
+	{
+		str[ret] = (num % 10) + '0';
+		num /= 10;
+		ret--;
+		i++;
+	}
+	if (n < 1 && n > -1)
+		str[i++] = '0';
+	return (i);
+}
+
+static void	get_dec_part(char *str, double dec, long num, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	str[i] = '.';
+	i++;
+	while (i < len)
+	{
+		dec *= 10;
+		num = (long)dec;
+		str[i] = (num % 10) + '0';
+		dec -= (double)num;
+		i++;
+	}
+	str[i] = '\0';
+}
+
+/* Precision 15 */
+char	*ft_dtoa(double n, size_t precision)
+{
+	char	*str;
+	size_t	i;
+	size_t	len;
+	double	dec;
+	long	num;
+
+	len = 0;
+	num = (long)n;
+	len = get_len(n, num, len, precision);
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	if (n < 0)
+	{
+		str[i] = '-';
+		i++;
+		n = -n;
+	}
+	i = get_int_part(str, n, num, i);
+	dec = n - (double)num;
+	len -= i;
+	get_dec_part(&str[i], dec, num, len);
+	return (str);
 }

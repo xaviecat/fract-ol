@@ -50,7 +50,7 @@ ASAN_F			=	#-fsanitize=address -g3
 OPTI_F			=	-o2 -march=native #-fomit-frame-pointer -funroll-loops
 
 all				:	$(NAME)
-				./fractol Nova
+				./fractol Julia
 
 $(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) Makefile
 				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)

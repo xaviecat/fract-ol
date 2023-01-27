@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/26 17:11:54 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 11:56:30 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	mendel_init(t_cplx *mendel, t_mlxsetup *set)
 {
 	mendel->name = MENDEL;
+	mendel->sname = SMENDEL;
 	mendel->px.x = 0;
 	mendel->px.y = 0;
 	mendel->z.x = 0;

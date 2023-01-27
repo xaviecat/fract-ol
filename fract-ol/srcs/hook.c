@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/26 16:52:09 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 13:01:37 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	display_fratcal(t_cplx	*fractal)
 		nova_set(fractal);
 	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
+	print_info(fractal);
 }
 
 void	undo(int k, t_cplx	*fractal)
@@ -77,6 +78,7 @@ void	move_n_c(int k, t_cplx *fractal)
 	else if (k == J)
 		fractal->q.x -= 0.01 * fractal->zoom;
 }
+
 void	iter_tol(int k, t_cplx *fractal)
 {
 	if (k == MINUS)
@@ -144,7 +146,8 @@ int		movec(int x, int y, t_cplx	*fractal)
 	{
 		fractal->c.x = ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) * \
 		fractal->zoom;
-		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * fractal->zoom;
+		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * \
+		fractal->zoom;
 		display_fratcal(fractal);
 	}
 	return (0);
@@ -154,7 +157,8 @@ void	hooks(t_cplx *fractal)
 {
 	fractal->state = 0;
 	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 0L, process_key, fractal);
-	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, fractal);
+	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, \
+	fractal);
 	mlx_mouse_hook(fractal->set.lnk.mlx_win, mouse_hook, fractal);
-	mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEMOVE, 0L, movec,fractal);
+	mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEMOVE, 0L, movec, fractal);
 }

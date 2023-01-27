@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/23 14:41:11 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 12:58:03 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	burning_init(t_cplx *burning, t_mlxsetup *set)
 {
 	burning->name = BURNING;
+	burning->sname = SBURNING;
 	burning->px.x = 0;
 	burning->px.y = 0;
 	burning->z.x = 0;
@@ -22,7 +23,7 @@ void	burning_init(t_cplx *burning, t_mlxsetup *set)
 	burning->r = 2;
 	burning->imax = 100;
 	burning->zoom = 1;
-	burning->move.x = -0.7;
+	burning->move.x = 0;
 	burning->move.y = 0;
 	burning->set = *set;
 	burning->pow = 2;

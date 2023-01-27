@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/23 11:33:30 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 11:56:18 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	leaft_init(t_cplx *leaft, t_mlxsetup *set)
 {
 	leaft->name = LEAFT;
+	leaft->sname = SLEAFT;
 	leaft->px.x = 0;
 	leaft->px.y = 0;
 	leaft->z.x = 0;

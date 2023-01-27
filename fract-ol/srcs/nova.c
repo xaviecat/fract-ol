@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:15:52 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/26 17:25:47 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 11:56:48 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	nova_init(t_cplx *nova, t_mlxsetup *set)
 {
 	nova->name = NOVA;
+	nova->sname = SNOVA;
 	nova->px.x = 0;
 	nova->px.y = 0;
 	nova->z.x = 0;

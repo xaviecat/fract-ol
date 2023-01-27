@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/26 17:05:16 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 17:33:20 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,18 @@
 # include <math.h>
 # include "libft.h"
 # include "mlx.h"
-# define WIDTH	800//1920 // /* x */
-# define HEIGHT	800//1080 // /* y */
-# define DBLMAX	1000000000000000000000.
-# define RATIO	WIDTH / HEIGHT //!attention
-# define ERROR	"Please enter a valid argument among these:\n\
+# define WIDTH		800//1920 // /* x */
+# define HEIGHT		800//1080 // /* y */
+# define DBLMAX		1000000000000000000000.
+# define SJULIA		"Julia"
+# define SMENDEL	"Mendelbrot"
+# define SBURNING	"Burning Ship"
+# define SLEAF		"Leaf"
+# define SLEAFT		"Leaft"
+# define SNEWTON	"Newton"
+# define SNOVA		"Nova"
+# define RATIO		WIDTH / HEIGHT //!attention
+# define ERROR		"Please enter a valid argument among these:\n\
 -Julia\n\
 -Mendelbrot\n\
 -Burning Ship\n\
@@ -73,6 +80,7 @@ typedef enum e_name
 typedef struct s_cplx
 {
 	t_name		name;
+	char		*sname;
 	t_coor		px;
 	t_coor		z;
 	t_coor		c;
@@ -210,6 +218,8 @@ void	hooks(t_cplx *fractal);
 int		process_key(int keycode, t_cplx	*fractal);
 int		mouse_hook(int button, int x, int y, t_cplx	*fractal);
 int		clear_close_exit(t_cplx *fractal);
+void	print_info(t_cplx *fractal);
 
+char	*ft_dtoa(double n, size_t precision); //!
 # include <stdio.h>
 #endif

@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/26 17:13:09 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 12:01:30 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	julia_init(t_cplx *julia, t_mlxsetup *set)
 {
 	julia->name = JULIA;
+	julia->sname = SJULIA;
 	julia->px.x = 0;
 	julia->px.y = 0;
 	julia->z.x = 0;

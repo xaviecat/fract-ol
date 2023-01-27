@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/20 18:08:18 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/27 11:56:05 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	leaf_init(t_cplx *leaf, t_mlxsetup *set)
 {
 	leaf->name = LEAF;
+	leaf->sname = SLEAF;
 	leaf->px.x = 0;
 	leaf->px.y = 0;
 	leaf->z.x = 0;
