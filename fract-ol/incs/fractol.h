@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 16:53:15 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 17:23:50 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_cplx
 	t_img			*imgprt;
 	t_img			*imgdsp;
 	unsigned int	color_max;
-	unsigned int	color_derv;
+	unsigned int	color_drv;
 }				t_cplx;
 
 enum

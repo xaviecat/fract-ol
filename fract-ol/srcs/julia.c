@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 16:58:24 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 17:25:44 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 {
 	julia->name = JULIA;
 	julia->sname = SJULIA;
-	julia->color_derv = 0x00a2dcc7;
+	julia->color_drv = 0x004BC6B9;
 	julia->px.x = 0;
 	julia->px.y = 0;
 	julia->z.x = 0;
@@ -65,7 +65,7 @@ void	julia_set(t_cplx *julia)
 				julia_iter(julia);
 			if (i == julia->imax)
 				my_mlx_pixel_put(julia->imgprt, julia->px.x, julia->px.y, \
-				0x00FFFFFF);
+				/* 0x00FFFFFF */0x00000000);
 			else
 				color_pixels(julia, i);
 			julia->px.y++;
