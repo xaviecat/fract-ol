@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/27 11:56:30 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 16:17:22 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void	mendel_z_incr(t_cplx *mendel)
 
 void	mendel_iter(t_cplx *mendel)
 {
-
-	mendel->tmp.x = rcplxpow(mendel->z, mendel->pow) + mendel->c.x;
-	mendel->z.y = icplxpow(mendel->z, mendel->pow) + mendel->c.y;
+	mendel->tmp.x = rcplxpow(mendel->z, mendel->pow) + mendel->c.x/*  / (ft_pow(mendel->c.x, 2) + ft_pow(mendel->c.y ,2)) */;
+	mendel->z.y = icplxpow(mendel->z, mendel->pow) + mendel->c.y/*  / (ft_pow(mendel->c.x, 2) + ft_pow(mendel->c.y ,2)) */;
 	mendel->z.x = mendel->tmp.x;
 }
 

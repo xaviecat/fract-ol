@@ -10,6 +10,8 @@ SRCS			=																\
 					nova.c														\
 					math_utils.c												\
 					mlx_utils.c													\
+					hud.c														\
+					colors.c													\
 
 SRCS_D			=	srcs/
 

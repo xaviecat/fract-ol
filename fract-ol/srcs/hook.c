@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/27 13:01:37 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 14:04:35 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	display_fratcal(t_cplx	*fractal)
 		nova_set(fractal);
 	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
-	print_info(fractal);
+	print_hud(fractal);
 }
 
 void	undo(int k, t_cplx	*fractal)
@@ -93,7 +93,6 @@ void	iter_tol(int k, t_cplx *fractal)
 		fractal->imax = fractal->imax / 10;
 	else if (k == PLUS && fractal->name == NEWTON && fractal->imax <= DBLMAX)
 		fractal->imax = fractal->imax * 10;
-
 }
 
 int	process_key(int k, t_cplx	*fractal)
@@ -104,10 +103,13 @@ int	process_key(int k, t_cplx	*fractal)
 		fractal->pow -= 1;
 	else if (k == CBR)
 		fractal->pow += 1;
+	else if (k == H)
+		fractal->hstate++;
+	// else
+	// 	return (ft_printf("Key : %d\n", k));
 	iter_tol(k, fractal);
 	move_n_c(k, fractal);
 	undo(k, fractal);
-	///return (ft_printf("Key : %d\n", k));
 	display_fratcal(fractal);
 	return (0);
 }
@@ -131,9 +133,7 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 		fractal->zoom;
 	}
 	else if (button == LEFTC)
-		fractal->state = 1;
-	else if (button == RIGHTC)
-		fractal->state = 0;
+		fractal->cstate++;
 	// else
 	// 	return (ft_printf("Key : %d\n", button));
 	display_fratcal(fractal);
@@ -142,20 +142,21 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 
 int		movec(int x, int y, t_cplx	*fractal)
 {
-	if (fractal->state == 1)
+	if (fractal->cstate % 2 == 1)
 	{
 		fractal->c.x = ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) * \
 		fractal->zoom;
 		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * \
 		fractal->zoom;
-		display_fratcal(fractal);
 	}
+	display_fratcal(fractal);
 	return (0);
 }
 
 void	hooks(t_cplx *fractal)
 {
-	fractal->state = 0;
+	fractal->cstate = 0;
+	fractal->hstate = 0;
 	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 0L, process_key, fractal);
 	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, \
 	fractal);

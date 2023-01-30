@@ -6,13 +6,13 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:42:07 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/17 11:47:58 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 16:19:21 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	init_set(t_mlxsetup *set)
+void	init_set(t_mlxsetup *set) //! protegerr les mlx init
 {
 	set->lnk.mlx = mlx_init();
 	set->lnk.mlx_win = mlx_new_window(set->lnk.mlx, WIDTH, HEIGHT, "fract-ol");

@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:15:52 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/27 11:56:48 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 10:36:50 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	nova_init(t_cplx *nova, t_mlxsetup *set)
 	nova->q.y = 0;
 	nova->a = 1;
 	nova->d = -1;
-	nova->r = 2;
+	nova->r = 1.5;
 	nova->tol = 0.001;
 	nova->imax = 100;
 	nova->zoom = 1;
@@ -39,14 +39,14 @@ void	nova_init(t_cplx *nova, t_mlxsetup *set)
 
 void	nova_z_incr(t_cplx *nova)
 {
-	nova->z.x = ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
+	nova->z.x = 1/* ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
+	nova->zoom * RATIO + nova->move.x) */;
+	nova->z.y = 0;/* ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
+	nova->zoom + nova->move.y) */;
+	nova->c.x = ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
 	nova->zoom * RATIO + nova->move.x);
-	nova->z.y = ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
+	nova->c.y = ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
 	nova->zoom + nova->move.y);
-	// nova->c.x = 0/* ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
-	// nova->zoom * RATIO + nova->move.x) */;
-	// nova->c.y = 0/* ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
-	// nova->zoom + nova->move.y) */;
 }
 
 void	nova_iter(t_cplx *nova)

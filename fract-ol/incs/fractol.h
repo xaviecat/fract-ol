@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/27 17:33:20 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 16:53:15 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,33 @@ typedef enum e_name
 
 typedef struct s_cplx
 {
-	t_name		name;
-	char		*sname;
-	t_coor		px;
-	t_coor		z;
-	t_coor		c;
-	t_coor		q;
-	t_coor		tmp;
-	t_coor		old;
-	t_coor		move;
-	t_coor		mouse;
-	int			state;
-	double		tol;
-	double		a;
-	double		b;
-	double		cc;
-	double		d;
-	double		r;
-	double		imax;
-	double		zoom;
-	size_t		pow;
-	t_mlxsetup	set;
-	t_img		*imgtmp;
-	t_img		*imgprt;
-	t_img		*imgdsp;
+	t_name			name;
+	char			*sname;
+	t_coor			px;
+	t_coor			z;
+	t_coor			c;
+	t_coor			q;
+	t_coor			tmp;
+	t_coor			old;
+	t_coor			move;
+	t_coor			mouse;
+	size_t			cstate;
+	size_t			hstate;
+	double			tol;
+	double			a;
+	double			b;
+	double			cc;
+	double			d;
+	double			r;
+	double			imax;
+	double			zoom;
+	size_t			pow;
+	t_mlxsetup		set;
+	t_img			*imgtmp;
+	t_img			*imgprt;
+	t_img			*imgdsp;
+	unsigned int	color_max;
+	unsigned int	color_derv;
 }				t_cplx;
 
 enum
@@ -134,6 +137,7 @@ enum
 	K = 40,
 	L = 37,
 	J = 38,
+	H = 4,
 	CBL = 33,
 	CBR = 30,
 	ONE = 18,
@@ -220,6 +224,8 @@ int		mouse_hook(int button, int x, int y, t_cplx	*fractal);
 int		clear_close_exit(t_cplx *fractal);
 void	print_info(t_cplx *fractal);
 
-char	*ft_dtoa(double n, size_t precision); //!
+void	print_hud(t_cplx *fractal);
+
+void	color_pixels(t_cplx *fractal, size_t i);
 # include <stdio.h>
 #endif

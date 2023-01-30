@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:38:22 by xcharra           #+#    #+#             */
-/*   Updated: 2022/12/15 14:04:16 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/01/30 13:29:24 by xcharra          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	*ft_memset(void *mem, int v, size_t n);
 int		ft_atoi(const char *nbr);
 
 char	*ft_itoa(int n);
+/* Precision 15 max */
+char	*ft_dtoa(double n, size_t precision);
 
 char	**ft_split(char const *s, char c);
 
