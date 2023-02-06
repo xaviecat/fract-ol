@@ -1,55 +1,60 @@
-SRCS			=																\
-					fractol.c													\
-					hook.c														\
-					julia.c														\
-					mendelbrot.c												\
-					burning_ship.c												\
-					leaf.c														\
-					leaft.c														\
-					newton.c													\
-					nova.c														\
-					math_utils.c												\
-					mlx_utils.c													\
-					hud.c														\
-					colors.c													\
+SRCS			:=	fractol.c\
+					hook.c													\
+					julia.c													\
+					mendelbrot.c											\
+					burning_ship.c											\
+					leaf.c													\
+					leaft.c													\
+					newton.c												\
+					nova.c													\
+					math_utils.c											\
+					mlx_utils.c												\
+					hud.c													\
+					colors.c
 
-SRCS_D			=	srcs/
+SRCS_D			:=	srcs/
 
-OBJS			=	$(SRCS:%.c=$(OBJS_D)%.o)
+OBJS_D			:=	objs/
 
-OBJS_D			=	objs/
+OBJS			:=	$(SRCS:%.c=$(OBJS_D)%.o)
 
-HEAD			=	fractol.h
+HEAD			:=	fractol.h
 
-HEAD_D			=	incs/
+HEAD_D			:=	incs/
 
-NAME			=	fractol
+NAME			:=	fractol
 
-LIB				=	libft.a
+LIB				:=	libft.a
 
-LIB_D			=	libft/
+LIB_D			:=	libft/
 
-LIB_H			=	$(LIB_D)$(HEAD_D)
+LIB_H			:=	$(LIB_D)$(HEAD_D)
 
-LIB_A			=	$(LIB_D)$(LIB)
+LIB_A			:=	$(LIB_D)$(LIB)
 
-MLX				=	libmlx.a
+MLX				:=	libmlx.a
 
-MLX_D			=	mlx/
+CC				:=	cc
 
-MLX_F			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+RM				:=	rm -rfv
 
-MLX_A			=	$(MLX_D)$(MLX)
+CFLAGS			:=	-Wall -Wextra -Werror
 
-CC				=	cc
+ASAN_F			:=	#-fsanitize=address -g3
 
-RM				=	rm -rf
+OPTI_F			:=	#-o2 -march=native #-fomit-frame-pointer -funroll-loops
 
-CFLAGS			+=	-Wall -Wextra -Werror
-
-ASAN_F			=	#-fsanitize=address -g3
-
-OPTI_F			=	-o2 -march=native #-fomit-frame-pointer -funroll-loops
+UNAME_S			:=	$(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+MLX_D			:=	MLX_Linux/
+MLX_F			:=	-L$(MLX_D) -L/usr/lib -I$(MLX_D) -lXext -lX11 -lm -lz
+MLX_A			:=	$(MLX_D)$(MLX)
+endif
+ifeq ($(UNAME_S),Darwin)
+MLX_D			:=	MLX_MacOS/
+MLX_A			:=	$(MLX_D)$(MLX)
+MLX_F			:=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+endif
 
 all				:	$(NAME)
 				./fractol Julia
@@ -63,8 +68,8 @@ $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(MLX_A) $(LIB_A)
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
 
-$(MLX_A)		:	FORCE
-				make -j -C $(MLX_D) 2>/dev/null
+# $(MLX_A)		:	FORCE
+# 				make -j -C $(MLX_D) 2>/dev/null
 
 $(LIB_A)		:	FORCE
 				make -j -C $(LIB_D)

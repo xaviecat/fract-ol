@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nova.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:15:52 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 10:36:50 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/02/06 17:08:58 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,11 @@ void	nova_set(t_cplx *nova)
 				my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
 				0x00000000);
 			// else if (nova->z.x >= nova->tol * 1)
-			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
-			// 	0x00ABBDFF + (i << 8)); //0x00a2dcc7 * i / 1000000
+			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, 0x00ABBDFF + (i << 8)); //0x00a2dcc7 * i / 1000000
 			// else if (nova->z.x <= nova->tol * -1 && nova->z.y > 0)
-			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
-			// 	0x00894B77 + (i << 8)); //0x00a2dcc7 * i / 1000000
+			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, 0x00894B77 + (i << 8)); //0x00a2dcc7 * i / 1000000
 			// else if (nova->z.x <= nova->tol * -1 && nova->z.y < 0)
-			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
-			// 	0x0099e1d9 + (i << 8)); //0x00a2dcc7 * i / 1000000
+			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, 0x0099e1d9 + (i << 8)); //0x00a2dcc7 * i / 1000000
 			else
 				my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
 				0x00a2dcc7 * i / 1000000); //0x00a2dcc7 * i / 1000000
