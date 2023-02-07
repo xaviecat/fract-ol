@@ -36,18 +36,18 @@ MLX				:=	libmlx.a
 
 CC				:=	cc
 
-RM				:=	rm -rfv
+RM				:=	rm -rf
 
 CFLAGS			:=	-Wall -Wextra -Werror
 
 ASAN_F			:=	-g3 #-fsanitize=address 
 
-OPTI_F			:=	#-o2 -march=native #-fomit-frame-pointer -funroll-loops
+OPTI_F			:=	-o2 -march=native -fomit-frame-pointer -funroll-loops
 
 UNAME_S			:=	$(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 MLX_D			:=	MLX_Linux/
-MLX_F			:=	-L$(MLX_D) -L/usr/lib -I$(MLX_D) -lXext -lX11 -lm -lz
+MLX_F			:=	-L$(MLX_D) -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 MLX_A			:=	$(MLX_D)$(MLX)
 endif
 ifeq ($(UNAME_S),Darwin)
@@ -68,8 +68,8 @@ $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(MLX_A) $(LIB_A)
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
 
-# $(MLX_A)		:	FORCE
-# 				make -j -C $(MLX_D) 2>/dev/null
+$(MLX_A)		:	FORCE
+				make -j -C $(MLX_D) >/dev/null 2>/dev/null
 
 $(LIB_A)		:	FORCE
 				make -j -C $(LIB_D)
@@ -78,12 +78,12 @@ FORCE			:
 
 clean			:
 				$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
-#make clean -C $(LIB_D) >/dev/null
+				make clean -C $(LIB_D) >/dev/null
 
 fclean			:	clean
 				$(RM) $(NAME) $(OBJS_B)
-#make fclean -C $(LIB_D) >/dev/null
-#make clean -C $(MLX_D) >/dev/null
+				make fclean -C $(LIB_D) >/dev/null
+				make clean -C $(MLX_D) >/dev/null
 
 re				:	fclean all
 

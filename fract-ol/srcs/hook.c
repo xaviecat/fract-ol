@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/02/07 14:46:37 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/02/07 17:33:12 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	process_key(int k, t_cplx	*fractal)
 		fractal->pow += 1;
 	else if (k == H)
 		fractal->hstate++;
+	else if (k == N && fractal->name == NOVA)
+		fractal->nstate++, ft_printf("nstate{%d}", (int)fractal->nstate);
 	// else
 	// 	return (ft_printf("Key : %d\n", k));
 	iter_tol(k, fractal);
@@ -133,9 +135,9 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 		fractal->zoom;
 	}
 	else if (button == LEFTC)
-		fractal->cstate++, ft_printf("%d", (int)fractal->cstate);
-	// else
-	// 	return (ft_printf("Key : %d\n", button));
+		fractal->cstate++/*, ft_printf("cstate{%d}", (int)fractal->cstate) */;
+	else
+		return (ft_printf("Key : %d\n", button));
 	display_fratcal(fractal);
 	return (0);
 }
@@ -158,6 +160,7 @@ void	hooks(t_cplx *fractal)
 {
 	fractal->cstate = 0;
 	fractal->hstate = 0;
+	fractal->nstate = 0;
 	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 1L<<0, process_key, fractal);
 	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, \
 	fractal);

@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:15:52 by xcharra           #+#    #+#             */
-/*   Updated: 2023/02/06 17:08:58 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/02/07 18:08:45 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,24 @@ void	nova_init(t_cplx *nova, t_mlxsetup *set)
 
 void	nova_z_incr(t_cplx *nova)
 {
-	nova->z.x = 1/* ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
-	nova->zoom * RATIO + nova->move.x) */;
-	nova->z.y = 0;/* ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
-	nova->zoom + nova->move.y) */;
-	nova->c.x = ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
-	nova->zoom * RATIO + nova->move.x);
-	nova->c.y = ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
-	nova->zoom + nova->move.y);
+	if (nova->nstate % 2 == 0)
+	{
+		nova->z.x = ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
+		nova->zoom * RATIO + nova->move.x);
+		nova->z.y = ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
+		nova->zoom + nova->move.y);
+		nova->c.x = 0;
+		nova->c.y = 0;
+	}
+	else if (nova->nstate % 2 == 1)
+	{
+		nova->z.x = 1;
+		nova->z.y = 0;
+		nova->c.x = ((2 * nova->r * nova->px.x / WIDTH - nova->r) * \
+		nova->zoom * RATIO + nova->move.x);
+		nova->c.y = ((nova->r - 2 * nova->r * nova->px.y / HEIGHT) * \
+		nova->zoom + nova->move.y);
+	}
 }
 
 void	nova_iter(t_cplx *nova)

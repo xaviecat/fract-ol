@@ -6,7 +6,7 @@
 /*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/02/07 12:20:19 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/02/07 17:28:19 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_cplx
 	t_coor			mouse;
 	size_t			cstate;
 	size_t			hstate;
+	size_t			nstate;
 	double			tol;
 	double			a;
 	double			b;
@@ -138,6 +139,7 @@ enum
 // 	L = 37,
 // 	J = 38,
 // 	H = 4,
+// 	N = 0x0,
 // 	CBL = 33,
 // 	CBR = 30,
 // 	ONE = 18,
@@ -171,6 +173,7 @@ enum
 	L = 108,
 	J = 106,
 	H = 104,
+	N = 110,
 	CBL = 91,
 	CBR = 93,
 	ONE = 49,

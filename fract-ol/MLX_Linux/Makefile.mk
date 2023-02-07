@@ -10,22 +10,18 @@
 
 ## Please use configure script
 
-# --- COLORS --- #
-
-_NOC	:=	\033[0m
-_RED	:=	\033[1;31m
-_GREEN	:=	\033[1;32m
-
-# --- VARIABLES --- #
 
 INC	=%%%%
+
 UNAME = $(shell uname)
 CC	= gcc
 ifeq ($(UNAME),FreeBSD)
 	CC = clang
 endif
+
 NAME		= libmlx.a
 NAME_UNAME	= libmlx_$(UNAME).a
+
 SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \
 	mlx_mouse_hook.c mlx_key_hook.c mlx_expose_hook.c mlx_loop_hook.c \
 	mlx_int_anti_resize_win.c mlx_int_do_nothing.c \
@@ -37,11 +33,10 @@ SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \
 	mlx_int_param_event.c mlx_int_set_win_event_mask.c mlx_hook.c \
 	mlx_rgb.c mlx_destroy_image.c mlx_mouse.c mlx_screen_size.c \
 	mlx_destroy_display.c
+
 OBJ_DIR = obj
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
-CFLAGS	= -O3 -I$(INC) -Wno-deprecated-declarations
-
-# --- RULES --- #
+CFLAGS	= -O3 -I$(INC)
 
 all	: $(NAME)
 
@@ -53,7 +48,6 @@ $(NAME)	: $(OBJ)
 	ar -r $(NAME) $(OBJ)
 	ranlib $(NAME)
 	cp $(NAME) $(NAME_UNAME)
-	@echo "${_GREEN}### ${NAME} created ###${_NOC}\n"
 
 check: all
 	@test/run_tests.sh
@@ -68,6 +62,5 @@ show:
 
 clean	:
 	rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core
-	@echo "${_RED}### Removed MLX object files ###${_NOC}"
 
 .PHONY: all check show clean
