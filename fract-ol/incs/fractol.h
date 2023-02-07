@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 17:23:50 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/02/07 12:20:19 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,49 +118,90 @@ enum
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
-/* KEY HOOK */
+/* KEY HOOK MAC*/
+// enum
+// {
+// 	UP = 126,
+// 	DOWN = 125,
+// 	RIGHT = 124,
+// 	LEFT = 123,
+// 	PLUS = 24,
+// 	MINUS = 27,
+// 	ESC = 53,
+// 	B = 11,
+// 	W = 13,
+// 	A = 0,
+// 	S = 1,
+// 	D = 2,
+// 	I = 34,
+// 	K = 40,
+// 	L = 37,
+// 	J = 38,
+// 	H = 4,
+// 	CBL = 33,
+// 	CBR = 30,
+// 	ONE = 18,
+// 	TWO = 19,
+// 	THREE = 20,
+// 	FOUR = 21,
+// 	FIVE = 23,
+// 	SIX = 22,
+// 	SEVEN = 26,
+// 	EIGHT = 28,
+// 	NINE = 25,
+// 	ZERO = 29,
+// };
+/* KEY HOOK LINUX*/
 enum
 {
-	UP = 126,
-	DOWN = 125,
-	RIGHT = 124,
-	LEFT = 123,
-	PLUS = 24,
-	MINUS = 27,
-	ESC = 53,
-	B = 11,
-	W = 13,
-	A = 0,
-	S = 1,
-	D = 2,
-	I = 34,
-	K = 40,
-	L = 37,
-	J = 38,
-	H = 4,
-	CBL = 33,
-	CBR = 30,
-	ONE = 18,
-	TWO = 19,
-	THREE = 20,
-	FOUR = 21,
-	FIVE = 23,
-	SIX = 22,
-	SEVEN = 26,
-	EIGHT = 28,
-	NINE = 25,
-	ZERO = 29,
+	UP = 65362,
+	DOWN = 65364,
+	RIGHT = 65363,
+	LEFT = 65361,
+	PLUS = 61,
+	MINUS = 45,
+	ESC = 65307,
+	B = 98,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100,
+	I = 105,
+	K = 107,
+	L = 108,
+	J = 106,
+	H = 104,
+	CBL = 91,
+	CBR = 93,
+	ONE = 49,
+	TWO = 50,
+	THREE = 51,
+	FOUR = 52,
+	FIVE = 53,
+	SIX = 54,
+	SEVEN = 55,
+	EIGHT = 56,
+	NINE = 57,
+	ZERO = 48,
 };
-/* MOUSE HOOK */
+/* MOUSE HOOK MAC*/
+// enum
+// {
+// 	LEFTC = 1,
+// 	RIGHTC = 2,
+// 	SCROLLC = 3,
+// 	SCROLLDOWN = 4,
+// 	SCROLLUP = 5,
+// };
+/* MOUSE HOOK LINUX*/
 enum
 {
 	LEFTC = 1,
-	RIGHTC = 2,
-	SCROLLC = 3,
-	SCROLLDOWN = 4,
-	SCROLLUP = 5,
+	RIGHTC = 3,
+	SCROLLC = 2,
+	SCROLLDOWN = 5,
+	SCROLLUP = 4,
 };
-
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	init_set(t_mlxsetup *set);
 void	switchimg(t_cplx *fractal);

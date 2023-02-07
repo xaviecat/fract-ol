@@ -40,7 +40,7 @@ RM				:=	rm -rfv
 
 CFLAGS			:=	-Wall -Wextra -Werror
 
-ASAN_F			:=	#-fsanitize=address -g3
+ASAN_F			:=	-g3 #-fsanitize=address 
 
 OPTI_F			:=	#-o2 -march=native #-fomit-frame-pointer -funroll-loops
 

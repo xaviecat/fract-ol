@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 14:04:35 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/02/07 14:46:37 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	display_fratcal(t_cplx	*fractal)
 		newton_set(fractal);
 	else if (fractal->name == NOVA)
 		nova_set(fractal);
-	mlx_put_image_to_window(&fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
+	mlx_put_image_to_window(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
 	print_hud(fractal);
 }
@@ -133,7 +133,7 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 		fractal->zoom;
 	}
 	else if (button == LEFTC)
-		fractal->cstate++;
+		fractal->cstate++, ft_printf("%d", (int)fractal->cstate);
 	// else
 	// 	return (ft_printf("Key : %d\n", button));
 	display_fratcal(fractal);
@@ -144,6 +144,7 @@ int		movec(int x, int y, t_cplx	*fractal)
 {
 	if (fractal->cstate % 2 == 1)
 	{
+		//printf(" at (%d,%d)", x, y);
 		fractal->c.x = ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) * \
 		fractal->zoom;
 		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * \
@@ -157,9 +158,9 @@ void	hooks(t_cplx *fractal)
 {
 	fractal->cstate = 0;
 	fractal->hstate = 0;
-	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 0L, process_key, fractal);
+	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 1L<<0, process_key, fractal);
 	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, \
 	fractal);
 	mlx_mouse_hook(fractal->set.lnk.mlx_win, mouse_hook, fractal);
-	mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEMOVE, 0L, movec, fractal);
+	mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEMOVE, 1L<<13, movec, fractal);
 }
