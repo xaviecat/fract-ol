@@ -1,4 +1,4 @@
-SRCS			:=	fractol.c\
+SRCS			:=	fractol.c												\
 					hook.c													\
 					julia.c													\
 					mendelbrot.c											\
@@ -77,14 +77,14 @@ $(LIB_A)		:	FORCE
 FORCE			:
 
 clean			:
-				$(RM) $(OBJS) $(OBJS_B) $(OBJS_D)
+				$(RM) $(OBJS) $(OBJS_D)
 				make clean -C $(LIB_D) >/dev/null
 
 fclean			:	clean
-				$(RM) $(NAME) $(OBJS_B)
+				$(RM) $(NAME)
 				make fclean -C $(LIB_D) >/dev/null
 				make clean -C $(MLX_D) >/dev/null
 
 re				:	fclean all
 
-.PHONY			:	all clean fclean re mklib FORCE f opt
+.PHONY			:	all clean fclean re FORCE
