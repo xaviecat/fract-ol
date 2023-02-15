@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/02/07 17:33:12 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/02/15 15:22:32 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,5 @@ void	hooks(t_cplx *fractal)
 	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, \
 	fractal);
 	mlx_mouse_hook(fractal->set.lnk.mlx_win, mouse_hook, fractal);
-	mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEMOVE, 1L<<13, movec, fractal);
+	mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEMOVE, 1L<<6, movec, fractal); // 1L<<13
 }
