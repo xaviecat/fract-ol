@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:15:53 by xcharra           #+#    #+#             */
-/*   Updated: 2022/11/09 18:17:12 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 18:24:24 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		if (s1[i] == 0)
 			return (0);
 		else
-		i++;
+			i++;
 	}
 	if (i == n)
 		return (0);
