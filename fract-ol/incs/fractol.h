@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/02/07 17:28:19 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/03/09 10:54:16 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,6 +269,8 @@ int		clear_close_exit(t_cplx *fractal);
 void	print_info(t_cplx *fractal);
 
 void	print_hud(t_cplx *fractal);
+
+/* choose_fratal */
 
 void	color_pixels(t_cplx *fractal, size_t i);
 # include <stdio.h>
