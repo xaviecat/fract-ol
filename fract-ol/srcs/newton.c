@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 11:37:57 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/27 11:56:38 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/04/28 17:33:29 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,7 @@ void	newton_set(t_cplx *newton)
 			newton->tmp.y = 1;
 			while (newton->tmp.y > newton->tol && i < newton->imax && i++)
 				newton_iter(newton);
-			if (i == newton->imax)
-				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x00FF0000);
-			else if (newton->z.x <= newton->tol * -1)
-				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x00ABBDFF + (i << 8));
-			else if (newton->z.x >= newton->tol * 1 && newton->z.y > 0)
-				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x00894B77 + (i << 8));
-			else if (newton->z.x >= newton->tol * 1 && newton->z.y < 0)
-				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x0099e1d9 + (i << 8));
-			else
-				my_mlx_pixel_put(newton->imgprt, newton->px.x, newton->px.y, \
-				0x00a2dcc7 * i / 1000000);
+			newton_colors(i, newton);
 			newton->px.y++;
 		}
 		newton->px.x++;

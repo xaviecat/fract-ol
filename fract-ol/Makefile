@@ -1,15 +1,18 @@
-SRCS			:=	fractol.c												\
-					hook.c													\
-					julia.c													\
-					mendelbrot.c											\
-					burning_ship.c											\
-					leaf.c													\
-					leaft.c													\
-					newton.c												\
-					nova.c													\
-					math_utils.c											\
-					mlx_utils.c												\
-					hud.c													\
+SRCS			:=	fractol.c\
+					hook.c\
+					hook2.c\
+					julia.c\
+					mendelbrot.c\
+					burning_ship.c\
+					leaf.c\
+					leaft.c\
+					newton.c\
+					nova.c\
+					math_utils.c\
+					math_utils2.c\
+					math_utils3.c\
+					mlx_utils.c\
+					hud.c\
 					colors.c
 
 SRCS_D			:=	srcs/
@@ -40,7 +43,7 @@ RM				:=	rm -rf
 
 CFLAGS			:=	-Wall -Wextra -Werror
 
-ASAN_F			:=	-g3 #-fsanitize=address 
+ASAN_F			:=	-g3 #-fsanitize=address
 
 OPTI_F			:=	-o2 -march=native -fomit-frame-pointer -funroll-loops
 

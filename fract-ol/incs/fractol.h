@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 16:50:28 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:46:55 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@
 # include <limits.h>
 # include <math.h>
 # include "libft.h"
+# include "struct.h"
 # include "mlx.h"
 # define WIDTH		800//1920 // /* x */
 # define HEIGHT		800//1080 // /* y */
 # define DBLMAX		1000000000000000000000.
 # define SJULIA		"Julia"
 # define SMENDEL	"Mendelbrot"
-# define SBURNING	"Burning Ship"
+# define SBURNING	"Burning_Ship"
 # define SLEAF		"Leaf"
 # define SLEAFT		"Leaft"
 # define SNEWTON	"Newton"
 # define SNOVA		"Nova"
-# define RATIO		WIDTH / HEIGHT
+# define RATIO		1 /* x / y */
 # define ERROR		"Please enter a valid argument among these:\n\
 -Julia\n\
 -Mendelbrot\n\
@@ -39,190 +40,23 @@
 -Newton\n\
 -Nova\n"
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*mlx_win;
-}			t_vars;
+void	choose_fractal(int name, t_mlxsetup *set, t_cplx *fractal);
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_img;
-typedef struct s_mlxsetup
-{
-	t_vars	lnk;
-	t_img	img;
-	t_img	img2;
-}			t_mlxsetup;
-typedef struct s_coor
-{
-	double	x;
-	double	y;
-}			t_coor;
-
-/* FRACTAL NAMES */
-typedef enum e_name
-{
-	JULIA,
-	MENDEL,
-	BURNING,
-	LEAF,
-	LEAFT,
-	NEWTON,
-	NOVA,
-}t_name;
-
-
-typedef enum e_bool
-{
-	false,
-	true
-}	t_bool;
-
-typedef struct s_cplx
-{
-	t_name			name;
-	char			*sname;
-	t_coor			px;
-	t_coor			z;
-	t_coor			c;
-	t_coor			q;
-	t_coor			tmp;
-	t_coor			old;
-	t_coor			move;
-	t_coor			mouse;
-	size_t			cstate;
-	size_t			hstate;
-	size_t			nstate;
-	double			tol;
-	double			a;
-	double			b;
-	double			cc;
-	double			d;
-	double			r;
-	double			imax;
-	double			zoom;
-	size_t			pow;
-	t_mlxsetup		set;
-	t_img			*imgtmp;
-	t_img			*imgprt;
-	t_img			*imgdsp;
-	unsigned int	color_max;
-	unsigned int	color_drv;
-	t_bool			clickstatus;
-}				t_cplx;
-
-enum
-{
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
-	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6,
-	ON_EXPOSE = 12,
-	ON_DESTROY = 17
-};
-/* KEY HOOK MAC*/
-// enum
-// {
-// 	UP = 126,
-// 	DOWN = 125,
-// 	RIGHT = 124,
-// 	LEFT = 123,
-// 	PLUS = 24,
-// 	MINUS = 27,
-// 	ESC = 53,
-// 	B = 11,
-// 	W = 13,
-// 	A = 0,
-// 	S = 1,
-// 	D = 2,
-// 	I = 34,
-// 	K = 40,
-// 	L = 37,
-// 	J = 38,
-// 	H = 4,
-// 	N = 0x0,
-// 	CBL = 33,
-// 	CBR = 30,
-// 	ONE = 18,
-// 	TWO = 19,
-// 	THREE = 20,
-// 	FOUR = 21,
-// 	FIVE = 23,
-// 	SIX = 22,
-// 	SEVEN = 26,
-// 	EIGHT = 28,
-// 	NINE = 25,
-// 	ZERO = 29,
-// };
-/* KEY HOOK LINUX*/
-enum
-{
-	UP = 65362,
-	DOWN = 65364,
-	RIGHT = 65363,
-	LEFT = 65361,
-	PLUS = 61,
-	MINUS = 45,
-	ESC = 65307,
-	B = 98,
-	W = 119,
-	A = 97,
-	S = 115,
-	D = 100,
-	I = 105,
-	K = 107,
-	L = 108,
-	J = 106,
-	H = 104,
-	N = 110,
-	CBL = 91,
-	CBR = 93,
-	ONE = 49,
-	TWO = 50,
-	THREE = 51,
-	FOUR = 52,
-	FIVE = 53,
-	SIX = 54,
-	SEVEN = 55,
-	EIGHT = 56,
-	NINE = 57,
-	ZERO = 48,
-};
-/* MOUSE HOOK MAC*/
-// enum
-// {
-// 	LEFTC = 1,
-// 	RIGHTC = 2,
-// 	SCROLLC = 3,
-// 	SCROLLDOWN = 4,
-// 	SCROLLUP = 5,
-// };
-/* MOUSE HOOK LINUX*/
-enum
-{
-	LEFTC = 1,
-	RIGHTC = 3,
-	SCROLLC = 2,
-	SCROLLDOWN = 5,
-	SCROLLUP = 4,
-};
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	init_set(t_mlxsetup *set);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		clear_close_exit(t_cplx *fractal);
 void	switchimg(t_cplx *fractal);
 
 double	zmod2(t_coor *pixels);
 double	ft_pow(double nbr, size_t pow);
-double	rcplxpow(t_coor z, size_t power);
-double	icplxpow(t_coor z, size_t power);
 double	rcplxdiv(t_coor top, t_coor bot);
 double	icplxdiv(t_coor top, t_coor bot);
+
+double	rcplxpow1to5(t_coor z, size_t power);
+double	rcplxpow6to10(t_coor z, size_t power);
+double	icplxpow1to5(t_coor z, size_t power);
+double	icplxpow6to10(t_coor z, size_t power);
+
 double	rcplxcos(t_coor top, t_coor bot);
 double	icplxcos(t_coor top, t_coor bot);
 double	rcplxsin(t_coor top, t_coor bot);
@@ -270,17 +104,24 @@ void	nova_iter(t_cplx *nova);
 void	nova_set(t_cplx *nova);
 void	nova_display(t_mlxsetup *set, t_cplx *fractal);
 
-void	hooks(t_cplx *fractal);
+void	display_fratcal(t_cplx	*fractal);
+void	undo(int k, t_cplx	*fractal);
+void	move_n_c(int k, t_cplx *fractal);
+void	iter_tol(int k, t_cplx *fractal);
 int		process_key(int keycode, t_cplx	*fractal);
+
 int		mouse_hook(int button, int x, int y, t_cplx	*fractal);
-int		clear_close_exit(t_cplx *fractal);
+int		movec(int x, int y, t_cplx	*fractal);
+void	hooks(t_cplx *fractal);
+
 void	print_info(t_cplx *fractal);
 
 void	print_hud(t_cplx *fractal);
-
-/* choose_fratal */
+void	print_hud_1(t_cplx *fractal);
+void	print_hud_2(t_cplx *fractal);
+void	print_hud_3(t_cplx *fractal);
 
 void	color_pixels(t_cplx *fractal, size_t i);
+void	newton_colors(int i, t_cplx *newton);
 
-# include <stdio.h>
 #endif

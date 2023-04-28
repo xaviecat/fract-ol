@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nova.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:15:52 by xcharra           #+#    #+#             */
-/*   Updated: 2023/02/07 18:08:45 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:29:22 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ void	nova_iter(t_cplx *nova)
 	* ft_pow(nova->z.x, 4) * nova->z.y - nova->a * ft_pow(nova->z.x, 2) * \
 	ft_pow(nova->z.y, 3)) - 2 * nova->d * nova->z.x * nova->z.y - \
 	ft_pow(nova->z.x, 2) * ft_pow(nova->z.y, 3) + ft_pow(nova->z.y, 5)) / denom;
-	nova->z.x = nova->z.x - nova->q.x * nova->tmp.x - nova->q.y * nova->tmp.y\
-	 + nova->c.x;
-	nova->z.y = nova->z.y - nova->q.x * nova->tmp.y + nova->q.y * nova->tmp.x\
-	 + nova->c.y;
+	nova->z.x = nova->z.x - nova->q.x * nova->tmp.x - nova->q.y * nova->tmp.y \
+	+ nova->c.x;
+	nova->z.y = nova->z.y - nova->q.x * nova->tmp.y + nova->q.y * nova->tmp.x \
+	+ nova->c.y;
 	nova->tmp.y = ft_pow(nova->z.x - nova->old.x, 2) + \
 	ft_pow(nova->z.y - nova->old.y, 2);
 }
@@ -104,15 +104,9 @@ void	nova_set(t_cplx *nova)
 			if (i == nova->imax)
 				my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
 				0x00000000);
-			// else if (nova->z.x >= nova->tol * 1)
-			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, 0x00ABBDFF + (i << 8)); //0x00a2dcc7 * i / 1000000
-			// else if (nova->z.x <= nova->tol * -1 && nova->z.y > 0)
-			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, 0x00894B77 + (i << 8)); //0x00a2dcc7 * i / 1000000
-			// else if (nova->z.x <= nova->tol * -1 && nova->z.y < 0)
-			// 	my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, 0x0099e1d9 + (i << 8)); //0x00a2dcc7 * i / 1000000
 			else
 				my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
-				0x00a2dcc7 * i / 1000000); //0x00a2dcc7 * i / 1000000
+				0x00a2dcc7 * i / 1000000);
 			nova->px.y++;
 		}
 		nova->px.x++;

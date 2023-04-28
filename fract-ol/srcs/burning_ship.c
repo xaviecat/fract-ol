@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 14:40:59 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/04/28 17:00:15 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	burning_z_incr(t_cplx *burning)
 
 void	burning_iter(t_cplx *burning)
 {
-	burning->tmp.x = rcplxpow(burning->z, burning->pow) + burning->c.x;
-	burning->z.y = fabs(icplxpow(burning->z, burning->pow)) - burning->c.y;
+	burning->tmp.x = rcplxpow1to5(burning->z, burning->pow) + burning->c.x;
+	burning->z.y = fabs(icplxpow1to5(burning->z, burning->pow)) - burning->c.y;
 	burning->z.x = burning->tmp.x;
 }
 

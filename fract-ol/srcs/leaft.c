@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/27 11:56:18 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/04/28 17:04:41 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	leaft_set(t_cplx *leaft)
 				0x00FFFFFF);
 			else
 				my_mlx_pixel_put(leaft->imgprt, leaft->px.x, leaft->px.y, \
-				0x00a2dcc7 * i / 10000); //0x00a2dcc7 / i / 10000
+				0x00a2dcc7 * i / 10000);
 			leaft->px.y++;
 		}
 		leaft->px.x++;

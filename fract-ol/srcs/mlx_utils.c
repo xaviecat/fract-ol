@@ -6,13 +6,13 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:42:07 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 16:48:36 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:30:14 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	init_set(t_mlxsetup *set) //! protegerr les mlx init
+void	init_set(t_mlxsetup *set)
 {
 	set->lnk.mlx = mlx_init();
 	if (!set->lnk.mlx)

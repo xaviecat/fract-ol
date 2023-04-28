@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 16:44:07 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:05:05 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,55 +112,4 @@ int	process_key(int k, t_cplx	*fractal)
 	undo(k, fractal);
 	display_fratcal(fractal);
 	return (0);
-}
-
-int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
-{
-	if (button == SCROLLUP)
-	{
-		fractal->zoom *= 1.1;
-		fractal->move.x -= ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) \
-		* 0.1 * fractal->zoom;
-		fractal->move.y -= (fractal->r - 2 * fractal->r * y / HEIGHT) * 0.1 * \
-		fractal->zoom;
-	}
-	else if (button == SCROLLDOWN)
-	{
-		fractal->zoom /= 1.1;
-		fractal->move.x += ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) \
-		* 0.1 * fractal->zoom;
-		fractal->move.y += (fractal->r - 2 * fractal->r * y / HEIGHT) * 0.1 * \
-		fractal->zoom;
-	}
-	else if (button == LEFTC)
-		fractal->cstate++;
-	else
-		return (ft_printf("Key : %d\n", button));
-	display_fratcal(fractal);
-	return (0);
-}
-
-int		movec(int x, int y, t_cplx	*fractal)
-{
-	if (fractal->cstate % 2 == 1)
-	{
-		fractal->c.x = ((2 * fractal->r * x / WIDTH - fractal->r) * RATIO) * \
-		fractal->zoom;
-		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * \
-		fractal->zoom;
-		display_fratcal(fractal);
-	}
-	return (0);
-}
-
-void	hooks(t_cplx *fractal)
-{
-	fractal->cstate = 0;
-	fractal->hstate = 0;
-	fractal->nstate = 0;
-	mlx_hook(fractal->set.lnk.mlx_win, ON_KEYDOWN, 1L<<0, process_key, fractal);
-	mlx_hook(fractal->set.lnk.mlx_win, ON_DESTROY, 0L, clear_close_exit, \
-	fractal);
-	mlx_mouse_hook(fractal->set.lnk.mlx_win, mouse_hook, fractal);
-	mlx_hook(fractal->set.lnk.mlx_win, ON_MOUSEMOVE, 1L<<6, movec, fractal);
 }

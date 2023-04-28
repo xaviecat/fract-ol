@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/02/07 12:18:30 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:04:33 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 	julia->px.y = 0;
 	julia->z.x = 0;
 	julia->z.y = 0;
-	julia->c.x = -0.4;/* 0.25; //-1; */
-	julia->c.y = 0.6;/* 0; */
+	julia->c.x = -0.4;
+	julia->c.y = 0.6;
 	julia->r = 2;
 	julia->imax = 100;
 	julia->zoom = 1;
@@ -44,8 +44,8 @@ void	julia_z_incr(t_cplx *julia)
 
 void	julia_iter(t_cplx *julia)
 {
-	julia->tmp.x = rcplxpow(julia->z, julia->pow) + julia->c.x;
-	julia->z.y = icplxpow(julia->z, julia->pow) + julia->c.y;
+	julia->tmp.x = rcplxpow1to5(julia->z, julia->pow) + julia->c.x;
+	julia->z.y = icplxpow1to5(julia->z, julia->pow) + julia->c.y;
 	julia->z.x = julia->tmp.x;
 }
 
