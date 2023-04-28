@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:42:07 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 16:19:21 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/04/28 16:48:36 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 void	init_set(t_mlxsetup *set) //! protegerr les mlx init
 {
 	set->lnk.mlx = mlx_init();
+	if (!set->lnk.mlx)
+	{
+		ft_fdprintf(2, "error MLX init");
+		exit(EXIT_FAILURE);
+	}
 	set->lnk.mlx_win = mlx_new_window(set->lnk.mlx, WIDTH, HEIGHT, "fract-ol");
 	set->img.img = mlx_new_image(set->lnk.mlx, WIDTH, HEIGHT);
 	set->img.addr = mlx_get_data_addr(set->img.img, \
@@ -35,7 +40,11 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 int	clear_close_exit(t_cplx *fractal)
 {
 	mlx_clear_window(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win);
+	mlx_destroy_image(fractal->set.lnk.mlx, fractal->set.img.img);
+	mlx_destroy_image(fractal->set.lnk.mlx, fractal->set.img2.img);
 	mlx_destroy_window(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win);
+	mlx_destroy_display(fractal->set.lnk.mlx);
+	free(fractal->set.lnk.mlx);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

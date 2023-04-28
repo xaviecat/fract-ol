@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:05:57 by xcharra           #+#    #+#             */
-/*   Updated: 2022/12/09 14:43:10 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 13:19:46 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static char	*cleanstack(char *stack)
 		stack = ft_strdup(ft_strchr(tmp, '\n') + 1);
 		if (!stack)
 			return (free(tmp), tmp = NULL, NULL);
+		if (!stack[0])
+			return (free(stack), free(tmp), tmp = NULL, stack = NULL, NULL);
 		free(tmp);
 		tmp = NULL;
 	}

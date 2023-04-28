@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:38:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 13:29:24 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/03/16 18:52:14 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,21 +85,21 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 /* Output fonctions */
 void	ft_putchar_fd(char c, int fd);
 
-int		ft_putchar(int c);
+int		ft_putchar(int c, int fd);
 
 void	ft_putendl_fd(char *s, int fd);
 
-int		ft_putnbr_base(size_t nb, char *base);
+int		ft_putnbr_base(size_t nb, char *base, int fd);
 
 void	ft_putnbr_fd(int nb, int fd);
 
-int		ft_putnbr(int nb);
+int		ft_putnbr(int nb, int fd);
 
 void	ft_putstr_fd(char *s, int fd);
 
-int		ft_putstr(char *str);
+int		ft_putstr(char *str, int fd);
 
-int		ft_putunbr(unsigned int nb);
+int		ft_putunbr(unsigned int nb, int fd);
 
 /* Linked list functions */
 typedef struct s_list
@@ -133,6 +133,8 @@ char	*get_next_line(int fd);
 # define HEXAL	"0123456789abcdef"
 # define HEXAU	"0123456789ABCDEF"
 # define MININT	"-2147483648"
+
+int		ft_fdprintf(int fd, const char *str, ...);
 
 int		ft_printf(const char *str, ...);
 

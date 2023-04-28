@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_fdprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:12:04 by xcharra           #+#    #+#             */
-/*   Updated: 2023/03/16 18:53:51 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/03/16 18:40:45 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	display(va_list args, char c)
+static int	display(int fd, va_list args, char c)
 {
-	int		fd;
-
-	fd = 1;
 	if (c == 'c')
 		return (ft_putchar(va_arg(args, int), fd));
 	else if (c == 's')
@@ -39,18 +36,16 @@ static int	display(va_list args, char c)
 	return (0);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_fdprintf(int fd, const char *str, ...)
 {
 	size_t	i;
 	va_list	args;
 	int		ret;
-	int		fd;
 
-	fd = 1;
 	i = 0;
 	va_start(args, str);
 	ret = 0;
-	if (write(1, 0, 0) < 0)
+	if (write(fd, 0, 0) < 0)
 		return (-1);
 	while (str[i] != '\0')
 	{
@@ -58,7 +53,7 @@ int	ft_printf(const char *str, ...)
 			ret += ft_putchar(str[i], fd);
 		if (str[i] == '%' && str[i + 1])
 		{
-			ret += display(args, str[i + 1]);
+			ret += display(fd, args, str[i + 1]);
 			i++;
 		}
 		i++;

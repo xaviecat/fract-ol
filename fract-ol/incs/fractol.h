@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/03/09 10:54:16 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/04/28 16:50:28 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define SLEAFT		"Leaft"
 # define SNEWTON	"Newton"
 # define SNOVA		"Nova"
-# define RATIO		WIDTH / HEIGHT //!attention
+# define RATIO		WIDTH / HEIGHT
 # define ERROR		"Please enter a valid argument among these:\n\
 -Julia\n\
 -Mendelbrot\n\
--Burning Ship\n\
+-Burning_Ship\n\
 -Leaf\n\
 -Leaft\n\
 -Newton\n\
@@ -77,6 +77,13 @@ typedef enum e_name
 	NOVA,
 }t_name;
 
+
+typedef enum e_bool
+{
+	false,
+	true
+}	t_bool;
+
 typedef struct s_cplx
 {
 	t_name			name;
@@ -107,6 +114,7 @@ typedef struct s_cplx
 	t_img			*imgdsp;
 	unsigned int	color_max;
 	unsigned int	color_drv;
+	t_bool			clickstatus;
 }				t_cplx;
 
 enum
@@ -273,5 +281,6 @@ void	print_hud(t_cplx *fractal);
 /* choose_fratal */
 
 void	color_pixels(t_cplx *fractal, size_t i);
+
 # include <stdio.h>
 #endif
