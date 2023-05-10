@@ -56,7 +56,7 @@ endif
 ifeq ($(UNAME_S),Darwin)
 MLX_D			:=	MLX_MacOS/
 MLX_A			:=	$(MLX_D)$(MLX)
-MLX_F			:=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_F			:=	-framework OpenGL -framework AppKit
 endif
 
 all				:	$(NAME)

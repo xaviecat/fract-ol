@@ -19,6 +19,7 @@
 # include <math.h>
 # include "libft.h"
 # include "struct.h"
+# include "struct_Mac.h"
 # include "mlx.h"
 # define WIDTH		800//1920 // /* x */
 # define HEIGHT		800//1080 // /* y */

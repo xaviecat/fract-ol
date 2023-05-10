@@ -43,7 +43,7 @@ int	clear_close_exit(t_cplx *fractal)
 	mlx_destroy_image(fractal->set.lnk.mlx, fractal->set.img.img);
 	mlx_destroy_image(fractal->set.lnk.mlx, fractal->set.img2.img);
 	mlx_destroy_window(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win);
-	mlx_destroy_display(fractal->set.lnk.mlx);
+//	mlx_destroy_display(fractal->set.lnk.mlx);
 	free(fractal->set.lnk.mlx);
 	exit(EXIT_SUCCESS);
 	return (0);
