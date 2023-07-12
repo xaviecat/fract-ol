@@ -45,7 +45,7 @@ CFLAGS			:=	-Wall -Wextra -Werror
 
 ASAN_F			:=	-g3 #-fsanitize=address
 
-OPTI_F			:=	-o2 -march=native -fomit-frame-pointer -funroll-loops
+OPTI_F			:=	#-o2 -march=native -fomit-frame-pointer -funroll-loops
 
 UNAME_S			:=	$(shell uname -s)
 ifeq ($(UNAME_S),Linux)
