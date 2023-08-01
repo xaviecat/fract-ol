@@ -34,7 +34,7 @@ int	mouse_hook(int button, int x, int y, t_cplx	*fractal)
 		fractal->cstate++;
 	else
 		return (ft_printf("Key : %d\n", button));
-	display_fratcal(fractal);
+	display_fractal(fractal);
 	return (0);
 }
 
@@ -46,7 +46,7 @@ int	movec(int x, int y, t_cplx	*fractal)
 		fractal->zoom;
 		fractal->c.y = (fractal->r - 2 * fractal->r * y / HEIGHT) * \
 		fractal->zoom;
-		display_fratcal(fractal);
+		display_fractal(fractal);
 	}
 	return (0);
 }

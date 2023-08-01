@@ -29,6 +29,7 @@ void	leaft_init(t_cplx *leaft, t_mlxsetup *set)
 	leaft->pow = 2;
 	leaft->imgprt = &leaft->set.img;
 	leaft->imgdsp = &leaft->set.img2;
+	leaft->selector = 0;
 }
 
 void	leaft_z_incr(t_cplx *leaft)

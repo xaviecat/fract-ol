@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:42:23 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 17:48:15 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/01 17:52:46 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_coor
 typedef enum e_name
 {
 	JULIA,
-	MENDEL,
+	MANDEL,
 	BURNING,
 	LEAF,
 	LEAFT,
@@ -72,6 +72,7 @@ typedef struct s_cplx
 	size_t			cstate;
 	size_t			hstate;
 	size_t			nstate;
+	size_t			selector;
 	double			tol;
 	double			a;
 	double			b;
@@ -80,6 +81,7 @@ typedef struct s_cplx
 	double			r;
 	double			imax;
 	double			zoom;
+
 	size_t			pow;
 	t_mlxsetup		set;
 	t_img			*imgtmp;
@@ -89,6 +91,20 @@ typedef struct s_cplx
 	unsigned int	color_drv;
 	t_bool			clickstatus;
 }				t_cplx;
+
+typedef enum e_num_pad
+{
+	NUM0 = 65438,
+	NUM1 = 65436,
+	NUM2 = 65433,
+	NUM3 = 65435,
+	NUM4 = 65430,
+	NUM5 = 65437,
+	NUM6 = 65432,
+	NUM7 = 65429,
+	NUM8 = 65431,
+	NUM9 = 65434,
+}	t_num_pad;
 
 /* MOUSE HOOK LINUX */
 enum

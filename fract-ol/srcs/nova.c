@@ -35,6 +35,7 @@ void	nova_init(t_cplx *nova, t_mlxsetup *set)
 	nova->set = *set;
 	nova->imgprt = &nova->set.img;
 	nova->imgdsp = &nova->set.img2;
+	nova->selector = 0;
 }
 
 void	nova_z_incr(t_cplx *nova)

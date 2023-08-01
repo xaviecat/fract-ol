@@ -6,19 +6,19 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:42:13 by xcharra           #+#    #+#             */
-/*   Updated: 2023/01/30 16:29:20 by xcharra          ###   ########lyon.fr   */
+/*   Updated: 2023/08/01 13:41:45 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	print_hud_3(t_cplx *fractal)
+void	print_hud_zoom(t_cplx *fractal)
 {
 	char	*zoom;
 
 	mlx_string_put(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, 10, 70, \
 	0x00FFFFFF, "zoom = ");
-	zoom = ft_dtoa(1 / fractal->zoom, 2);
+	zoom = ft_dtoa(fractal->zoom, 2);
 	if (!zoom)
 		clear_close_exit(fractal);
 	mlx_string_put(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, 59, 70, \
@@ -26,7 +26,7 @@ void	print_hud_3(t_cplx *fractal)
 	free(zoom);
 }
 
-void	print_hud_2(t_cplx *fractal)
+void	print_hud_cx_cy(t_cplx *fractal)
 {
 	char	*cx;
 	char	*cy;
@@ -49,7 +49,7 @@ void	print_hud_2(t_cplx *fractal)
 	free(cy);
 }
 
-void	print_hud_1(t_cplx *fractal)
+void	print_hud_pow_iter(t_cplx *fractal)
 {
 	char	*pow;
 	char	*iter;
@@ -79,9 +79,9 @@ void	print_hud(t_cplx *fractal)
 {
 	if (fractal->hstate % 2 == 1)
 	{
-		print_hud_1(fractal);
-		if (fractal->name != MENDEL && fractal->name != BURNING)
-			print_hud_2(fractal);
-		print_hud_3(fractal);
+		print_hud_pow_iter(fractal);
+		if (fractal->name != MANDEL && fractal->name != BURNING)
+			print_hud_cx_cy(fractal);
+		print_hud_zoom(fractal);
 	}
 }

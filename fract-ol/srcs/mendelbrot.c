@@ -6,88 +6,94 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 17:33:14 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/01 15:50:37 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	mendel_init(t_cplx *mendel, t_mlxsetup *set)
+void	mandel_init(t_cplx *mandel, t_mlxsetup *set)
 {
-	mendel->name = MENDEL;
-	mendel->sname = SMENDEL;
-	mendel->px.x = 0;
-	mendel->px.y = 0;
-	mendel->z.x = 0;
-	mendel->z.y = 0;
-	mendel->r = 2;
-	mendel->imax = 100;
-	mendel->zoom = 1;
-	mendel->move.x = 0;
-	mendel->move.y = 0;
-	mendel->set = *set;
-	mendel->pow = 2;
-	mendel->imgprt = &mendel->set.img;
-	mendel->imgdsp = &mendel->set.img2;
+	mandel->name = MANDEL;
+	mandel->sname = SMANDEL;
+	mandel->px.x = 0;
+	mandel->px.y = 0;
+	mandel->z.x = 0;
+	mandel->z.y = 0;
+	mandel->r = 2;
+	mandel->imax = 100;
+	mandel->zoom = 1;
+	mandel->move.x = 0;
+	mandel->move.y = 0;
+	mandel->set = *set;
+	mandel->pow = 2;
+	mandel->imgprt = &mandel->set.img;
+	mandel->imgdsp = &mandel->set.img2;
+	mandel->selector = 0;
 }
 
-void	mendel_z_incr(t_cplx *mendel)
+void	mandel_z_incr(t_cplx *mandel)
 {
-	mendel->z.x = 0;
-	mendel->z.y = 0;
-	mendel->c.x = ((2 * mendel->r * mendel->px.x / WIDTH - mendel->r) * \
-	mendel->zoom * RATIO + mendel->move.x);
-	mendel->c.y = ((mendel->r - 2 * mendel->r * mendel->px.y / HEIGHT) * \
-	mendel->zoom + mendel->move.y);
+	mandel->z.x = 0;
+	mandel->z.y = 0;
+	mandel->c.x = ((2 * mandel->r * mandel->px.x / WIDTH - mandel->r) * \
+	mandel->zoom * RATIO + mandel->move.x);
+	mandel->c.y = ((mandel->r - 2 * mandel->r * mandel->px.y / HEIGHT) * \
+	mandel->zoom + mandel->move.y);
 }
 
-void	mendel_iter(t_cplx *mendel)
+void	mandel_iter(t_cplx *mandel)
 {
-	mendel->tmp.x = rcplxpow1to5(mendel->z, mendel->pow) + mendel->c.x;
-	mendel->z.y = icplxpow1to5(mendel->z, mendel->pow) + mendel->c.y;
-	mendel->z.x = mendel->tmp.x;
+	if (mandel->nstate % 2 == 0)
+	{
+		mandel->tmp.x = rcplxpow1to5(mandel->z, mandel->pow) + mandel->c.x;
+		mandel->z.y = icplxpow1to5(mandel->z, mandel->pow) + mandel->c.y;
+		mandel->z.x = mandel->tmp.x;
+	}
+	else if (mandel->nstate % 2 == 1)
+	{
+		mandel->tmp.x = rcplxpow1to5(mandel->z, mandel->pow) + mandel->c.x
+			/ (ft_pow(mandel->c.x, 2) + ft_pow(mandel->c.y, 2));
+		mandel->z.y = icplxpow1to5(mandel->z, mandel->pow) + mandel->c.y
+			/ (ft_pow(mandel->c.x, 2) + ft_pow(mandel->c.y, 2));
+		mandel->z.x = mandel->tmp.x;
+	}
 }
 
-/* void	mendelleaf_iter(t_cplx *mendel)
-{
-	mendel->tmp.x = rcplxpow1to5(mendel->z, mendel->pow) + mendel->c.x / \
-	(ft_pow(mendel->c.x, 2) + ft_pow(mendel->c.y ,2));
-	mendel->z.y = icplxpow1to5(mendel->z, mendel->pow) + mendel->c.y / \
-	(ft_pow(mendel->c.x, 2) + ft_pow(mendel->c.y ,2));
-	mendel->z.x = mendel->tmp.x;
-} */
-
-void	mendel_set(t_cplx *mendel)
+void	mandel_set(t_cplx *mandel)
 {
 	size_t	i;
 
-	mendel->px.x = 0;
-	while (mendel->px.x < WIDTH)
+	mandel->px.x = 0;
+	while (mandel->px.x < WIDTH)
 	{
-		mendel->px.y = 0;
-		while (mendel->px.y < HEIGHT)
+		mandel->px.y = 0;
+		while (mandel->px.y < HEIGHT)
 		{
-			mendel_z_incr(mendel);
+			mandel_z_incr(mandel);
 			i = 1;
-			while (zmod2(&mendel->z) < 4. && i < mendel->imax && i++)
-				mendel_iter(mendel);
-			if (i == mendel->imax)
-				my_mlx_pixel_put(mendel->imgprt, mendel->px.x, mendel->px.y, \
-				0x00FFFFFF);
+			while (zmod2(&mandel->z) < 4. && i < mandel->imax && i++)
+				mandel_iter(mandel);
+			if (i == mandel->imax)
+				color_pixels(mandel, i);
+//				my_mlx_pixel_put(mandel->imgprt, mandel->px.x, mandel->px.y, \
+//				0x00FFFFFF);
 			else
-				my_mlx_pixel_put(mendel->imgprt, mendel->px.x, mendel->px.y, \
-				0x00a2dcc7 * i / 10000);
-			mendel->px.y++;
+				color_pixels(mandel, i);
+
+//				my_mlx_pixel_put(mandel->imgprt, mandel->px.x, mandel->px.y, \
+//				0x00a2dcc7 * i / 10000);
+			mandel->px.y++;
 		}
-		mendel->px.x++;
+		mandel->px.x++;
 	}
-	switchimg(mendel);
+	switchimg(mandel);
 }
 
-void	mendel_display(t_mlxsetup *set, t_cplx *fractal)
+void	mandel_display(t_mlxsetup *set, t_cplx *fractal)
 {
-	mendel_init(fractal, set);
-	mendel_set(fractal);
+	mandel_init(fractal, set);
+	mandel_set(fractal);
 	mlx_put_image_to_window(fractal->set.lnk.mlx, fractal->set.lnk.mlx_win, \
 	fractal->imgdsp->img, 0, 0);
 	hooks(fractal);

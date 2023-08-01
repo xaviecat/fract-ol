@@ -29,6 +29,7 @@ void	burning_init(t_cplx *burning, t_mlxsetup *set)
 	burning->pow = 2;
 	burning->imgprt = &burning->set.img;
 	burning->imgdsp = &burning->set.img2;
+	burning->selector = 0;
 }
 
 void	burning_z_incr(t_cplx *burning)

@@ -45,7 +45,7 @@ CFLAGS			:=	-Wall -Wextra -Werror
 
 ASAN_F			:=	-g3 #-fsanitize=address
 
-OPTI_F			:=	#-o2 -march=native -fomit-frame-pointer -funroll-loops
+OPTI_F			:= #-o3 # -march=native -fomit-frame-pointer -funroll-loops
 
 UNAME_S			:=	$(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -60,7 +60,7 @@ MLX_F			:=	-framework OpenGL -framework AppKit
 endif
 
 all				:	$(NAME)
-				./fractol Julia
+				#./fractol
 
 $(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) Makefile
 				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)

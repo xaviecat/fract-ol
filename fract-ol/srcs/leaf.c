@@ -29,6 +29,7 @@ void	leaf_init(t_cplx *leaf, t_mlxsetup *set)
 	leaf->pow = 2;
 	leaf->imgprt = &leaf->set.img;
 	leaf->imgdsp = &leaf->set.img2;
+	leaf->selector = 0;
 }
 
 void	leaf_z_incr(t_cplx *leaf)

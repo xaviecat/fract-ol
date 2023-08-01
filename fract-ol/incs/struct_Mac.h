@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:42:23 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 17:48:15 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/01 13:36:31 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_coor
 typedef enum e_name
 {
 	JULIA,
-	MENDEL,
+	MANDEL,
 	BURNING,
 	LEAF,
 	LEAFT,
@@ -92,13 +92,13 @@ typedef struct s_cplx
 
 enum
 {
-    ON_KEYDOWN = 2,
-    ON_KEYUP = 3,
-    ON_MOUSEDOWN = 4,
-    ON_MOUSEUP = 5,
-    ON_MOUSEMOVE = 6,
-    ON_EXPOSE = 12,
-    ON_DESTROY = 17
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
 };
 
 /* KEY HOOK MAC*/

@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/07/09 20:58:39 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/01 17:48:31 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define HEIGHT		800//1080 // /* y */
 # define DBLMAX		1000000000000000000000.
 # define SJULIA		"Julia"
-# define SMENDEL	"Mendelbrot"
+# define SMANDEL	"Mandelbrot"
 # define SBURNING	"Burning_Ship"
 # define SLEAF		"Leaf"
 # define SLEAFT		"Leaft"
@@ -34,7 +34,7 @@
 # define RATIO		1 /* x / y */
 # define ERROR		"Please enter a valid argument among these:\n\
 -Julia\n\
--Mendelbrot\n\
+-Mandelbrot\n\
 -Burning_Ship\n\
 -Leaf\n\
 -Leaft\n\
@@ -69,11 +69,11 @@ void	julia_iter(t_cplx *julia);
 void	julia_set(t_cplx *julia);
 void	julia_display(t_mlxsetup *set, t_cplx *fractal);
 
-void	mendel_init(t_cplx *mendel, t_mlxsetup *set);
-void	mendel_z_incr(t_cplx *mendel);
-void	mendel_iter(t_cplx *mendel);
-void	mendel_set(t_cplx *mendel);
-void	mendel_display(t_mlxsetup *set, t_cplx *fractal);
+void	mandel_init(t_cplx *mandel, t_mlxsetup *set);
+void	mandel_z_incr(t_cplx *mandel);
+void	mandel_iter(t_cplx *mandel);
+void	mandel_set(t_cplx *mandel);
+void	mandel_display(t_mlxsetup *set, t_cplx *fractal);
 
 void	burning_init(t_cplx *mendel, t_mlxsetup *set);
 void	burning_z_incr(t_cplx *mendel);
@@ -105,7 +105,7 @@ void	nova_iter(t_cplx *nova);
 void	nova_set(t_cplx *nova);
 void	nova_display(t_mlxsetup *set, t_cplx *fractal);
 
-void	display_fratcal(t_cplx	*fractal);
+void	display_fractal(t_cplx	*fractal);
 void	undo(int k, t_cplx	*fractal);
 void	move_n_c(int k, t_cplx *fractal);
 void	iter_tol(int k, t_cplx *fractal);
@@ -118,9 +118,9 @@ void	hooks(t_cplx *fractal);
 void	print_info(t_cplx *fractal);
 
 void	print_hud(t_cplx *fractal);
-void	print_hud_1(t_cplx *fractal);
-void	print_hud_2(t_cplx *fractal);
-void	print_hud_3(t_cplx *fractal);
+void	print_hud_pow_iter(t_cplx *fractal);
+void	print_hud_cx_cy(t_cplx *fractal);
+void	print_hud_zoom(t_cplx *fractal);
 
 void	color_pixels(t_cplx *fractal, size_t i);
 void	newton_colors(int i, t_cplx *newton);

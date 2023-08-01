@@ -6,18 +6,18 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 17:05:05 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/01 17:58:57 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	display_fratcal(t_cplx	*fractal)
+void	display_fractal(t_cplx	*fractal)
 {
 	if (fractal->name == JULIA)
 		julia_set(fractal);
-	else if (fractal->name == MENDEL)
-		mendel_set(fractal);
+	else if (fractal->name == MANDEL)
+		mandel_set(fractal);
 	else if (fractal->name == BURNING)
 		burning_ship(fractal);
 	else if (fractal->name == LEAF)
@@ -37,8 +37,8 @@ void	undo(int k, t_cplx	*fractal)
 {
 	if ((k == B && fractal->name == JULIA) || k == ONE)
 		julia_init(fractal, &fractal->set);
-	else if ((k == B && fractal->name == MENDEL) || k == TWO)
-		mendel_init(fractal, &fractal->set);
+	else if ((k == B && fractal->name == MANDEL) || k == TWO)
+		mandel_init(fractal, &fractal->set);
 	else if ((k == B && fractal->name == BURNING) || k == THREE)
 		burning_init(fractal, &fractal->set);
 	else if ((k == B && fractal->name == LEAF) || k == FOUR)
@@ -95,6 +95,30 @@ void	iter_tol(int k, t_cplx *fractal)
 		fractal->imax = fractal->imax * 10;
 }
 
+void	get_numpad_selector(int k, t_cplx *fractal)
+{
+	if (k == NUM0)
+		fractal->selector = 0;
+	else if (k == NUM1)
+		fractal->selector = 1;
+	else if (k == NUM2)
+		fractal->selector = 2;
+	else if (k == NUM3)
+		fractal->selector = 3;
+	else if (k == NUM4)
+		fractal->selector = 4;
+	else if (k == NUM5)
+		fractal->selector = 5;
+	else if (k == NUM6)
+		fractal->selector = 6;
+	else if (k == NUM7)
+		fractal->selector = 7;
+	else if (k == NUM8)
+		fractal->selector = 8;
+	else if (k == NUM9)
+		fractal->selector = 9;
+}
+
 int	process_key(int k, t_cplx	*fractal)
 {
 	if (k == ESC)
@@ -105,11 +129,13 @@ int	process_key(int k, t_cplx	*fractal)
 		fractal->pow += 1;
 	else if (k == H)
 		fractal->hstate++;
-	else if (k == N && fractal->name == NOVA)
+	else if (k == N && (fractal->name == NOVA || fractal->name == MANDEL))
 		fractal->nstate++;
+	get_numpad_selector(k, fractal);
+	printf("sel= %d")
 	iter_tol(k, fractal);
 	move_n_c(k, fractal);
 	undo(k, fractal);
-	display_fratcal(fractal);
+	display_fractal(fractal);
 	return (0);
 }
