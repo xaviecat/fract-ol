@@ -69,8 +69,7 @@ void	burning_ship(t_cplx *burning)
 				my_mlx_pixel_put(burning->imgprt, burning->px.x, burning->px.y, \
 				0x00FFFFFF);
 			else
-				my_mlx_pixel_put(burning->imgprt, burning->px.x, burning->px.y, \
-				0x00a2dcc7 * i / 10000);
+				color_pixels(burning, i);
 			burning->px.y++;
 		}
 		burning->px.x++;

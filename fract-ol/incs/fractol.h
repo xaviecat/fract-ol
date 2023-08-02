@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/08/01 17:48:31 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/02 13:20:35 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 # include <math.h>
 # include "libft.h"
 # include "struct.h"
-//# include "struct_Mac.h"
 # include "mlx.h"
-# define WIDTH		800//1920 // /* x */
-# define HEIGHT		800//1080 // /* y */
+# define WIDTH		600//1920 // /* x */
+# define HEIGHT		600//1080 // /* y */
 # define DBLMAX		1000000000000000000000.
 # define SJULIA		"Julia"
 # define SMANDEL	"Mandelbrot"
@@ -32,6 +31,11 @@
 # define SNEWTON	"Newton"
 # define SNOVA		"Nova"
 # define RATIO		1 /* x / y */
+# define ALP		0
+# define RED		1
+# define GRE		2
+# define BLU		3
+
 # define ERROR		"Please enter a valid argument among these:\n\
 -Julia\n\
 -Mandelbrot\n\
@@ -108,11 +112,12 @@ void	nova_display(t_mlxsetup *set, t_cplx *fractal);
 void	display_fractal(t_cplx	*fractal);
 void	undo(int k, t_cplx	*fractal);
 void	move_n_c(int k, t_cplx *fractal);
+void	get_numpad_selector(int k, t_cplx *fractal);
 void	iter_tol(int k, t_cplx *fractal);
-int		process_key(int keycode, t_cplx	*fractal);
 
 int		mouse_hook(int button, int x, int y, t_cplx	*fractal);
 int		movec(int x, int y, t_cplx	*fractal);
+int		process_key(int keycode, t_cplx	*fractal);
 void	hooks(t_cplx *fractal);
 
 void	print_info(t_cplx *fractal);
@@ -123,6 +128,6 @@ void	print_hud_cx_cy(t_cplx *fractal);
 void	print_hud_zoom(t_cplx *fractal);
 
 void	color_pixels(t_cplx *fractal, size_t i);
-void	newton_colors(int i, t_cplx *newton);
+void	newton_colors(size_t i, t_cplx *newton);
 
 #endif

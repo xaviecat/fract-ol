@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:49 by xcharra           #+#    #+#             */
-/*   Updated: 2023/08/01 17:58:57 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/02 13:24:17 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,6 @@ void	move_n_c(int k, t_cplx *fractal)
 		fractal->q.x -= 0.01 * fractal->zoom;
 }
 
-void	iter_tol(int k, t_cplx *fractal)
-{
-	if (k == MINUS)
-		fractal->imax -= 10;
-	else if (k == PLUS)
-		fractal->imax += 10;
-	else if (k == MINUS)
-		fractal->imax -= 10;
-	else if (k == PLUS)
-		fractal->imax += 10;
-	else if (k == MINUS && fractal->name == NEWTON && fractal->imax >= 10.)
-		fractal->imax = fractal->imax / 10;
-	else if (k == PLUS && fractal->name == NEWTON && fractal->imax <= DBLMAX)
-		fractal->imax = fractal->imax * 10;
-}
-
 void	get_numpad_selector(int k, t_cplx *fractal)
 {
 	if (k == NUM0)
@@ -119,23 +103,16 @@ void	get_numpad_selector(int k, t_cplx *fractal)
 		fractal->selector = 9;
 }
 
-int	process_key(int k, t_cplx	*fractal)
+void	iter_tol(int k, t_cplx *fractal)
 {
-	if (k == ESC)
-		clear_close_exit(fractal);
-	else if (k == CBL)
-		fractal->pow -= 1;
-	else if (k == CBR)
-		fractal->pow += 1;
-	else if (k == H)
-		fractal->hstate++;
-	else if (k == N && (fractal->name == NOVA || fractal->name == MANDEL))
-		fractal->nstate++;
-	get_numpad_selector(k, fractal);
-	printf("sel= %d")
-	iter_tol(k, fractal);
-	move_n_c(k, fractal);
-	undo(k, fractal);
-	display_fractal(fractal);
-	return (0);
+	if (k == MINUS && (fractal->name == NEWTON || fractal->name == NOVA)
+		&& fractal->imax >= 10.)
+		fractal->imax = fractal->imax / 10;
+	else if (k == PLUS && (fractal->name == NEWTON || fractal->name == NOVA)
+		&& fractal->imax <= DBLMAX)
+		fractal->imax = fractal->imax * 10;
+	else if (k == MINUS)
+		fractal->imax -= 10;
+	else if (k == PLUS)
+		fractal->imax += 10;
 }

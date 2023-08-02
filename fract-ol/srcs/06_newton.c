@@ -26,6 +26,7 @@ void	newton_init(t_cplx *newton, t_mlxsetup *set)
 	newton->move.x = 0;
 	newton->move.y = 0;
 	newton->set = *set;
+	newton->pow = 0;
 	newton->tol = 0.001;
 	newton->imgprt = &newton->set.img;
 	newton->imgdsp = &newton->set.img2;

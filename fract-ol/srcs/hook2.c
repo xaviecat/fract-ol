@@ -51,6 +51,26 @@ int	movec(int x, int y, t_cplx	*fractal)
 	return (0);
 }
 
+int	process_key(int k, t_cplx	*fractal)
+{
+	if (k == ESC)
+		clear_close_exit(fractal);
+	else if (k == CBL)
+		fractal->pow -= 1;
+	else if (k == CBR)
+		fractal->pow += 1;
+	else if (k == H)
+		fractal->hstate++;
+	else if (k == N && (fractal->name == NOVA || fractal->name == MANDEL))
+		fractal->nstate++;
+	get_numpad_selector(k, fractal);
+	iter_tol(k, fractal);
+	move_n_c(k, fractal);
+	undo(k, fractal);
+	display_fractal(fractal);
+	return (0);
+}
+
 void	hooks(t_cplx *fractal)
 {
 	fractal->cstate = 0;

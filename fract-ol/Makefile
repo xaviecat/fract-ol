@@ -1,19 +1,20 @@
-SRCS			:=	fractol.c\
+SRCS			:=	\
+					01_julia.c\
+					02_mendelbrot.c\
+					03_burning_ship.c\
+					04_leaf.c\
+					05_leaft.c\
+					06_newton.c\
+					07_nova.c\
+					colors.c\
+					fractol.c\
 					hook.c\
 					hook2.c\
-					julia.c\
-					mendelbrot.c\
-					burning_ship.c\
-					leaf.c\
-					leaft.c\
-					newton.c\
-					nova.c\
+					hud.c\
 					math_utils.c\
 					math_utils2.c\
 					math_utils3.c\
 					mlx_utils.c\
-					hud.c\
-					colors.c
 
 SRCS_D			:=	srcs/
 
@@ -45,7 +46,7 @@ CFLAGS			:=	-Wall -Wextra -Werror
 
 ASAN_F			:=	-g3 #-fsanitize=address
 
-OPTI_F			:= #-o3 # -march=native -fomit-frame-pointer -funroll-loops
+OPTI_F			:= -o2 -march=native -fomit-frame-pointer -funroll-loops
 
 UNAME_S			:=	$(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -60,7 +61,6 @@ MLX_F			:=	-framework OpenGL -framework AppKit
 endif
 
 all				:	$(NAME)
-				#./fractol
 
 $(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) Makefile
 				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)

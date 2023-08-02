@@ -69,8 +69,7 @@ void	leaf_set(t_cplx *leaf)
 				my_mlx_pixel_put(leaf->imgprt, leaf->px.x, leaf->px.y, \
 				0x00FFFFFF);
 			else
-				my_mlx_pixel_put(leaf->imgprt, leaf->px.x, leaf->px.y, \
-				0x00a2dcc7 * i / 10000);
+				color_pixels(leaf, i);
 			leaf->px.y++;
 		}
 		leaf->px.x++;

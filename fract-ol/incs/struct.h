@@ -6,7 +6,7 @@
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:42:23 by xcharra           #+#    #+#             */
-/*   Updated: 2023/08/01 17:52:46 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/02 13:24:59 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct s_cplx
 	double			r;
 	double			imax;
 	double			zoom;
-
 	size_t			pow;
 	t_mlxsetup		set;
 	t_img			*imgtmp;
@@ -91,20 +90,6 @@ typedef struct s_cplx
 	unsigned int	color_drv;
 	t_bool			clickstatus;
 }				t_cplx;
-
-typedef enum e_num_pad
-{
-	NUM0 = 65438,
-	NUM1 = 65436,
-	NUM2 = 65433,
-	NUM3 = 65435,
-	NUM4 = 65430,
-	NUM5 = 65437,
-	NUM6 = 65432,
-	NUM7 = 65429,
-	NUM8 = 65431,
-	NUM9 = 65434,
-}	t_num_pad;
 
 /* MOUSE HOOK LINUX */
 enum
@@ -151,6 +136,16 @@ enum
 	EIGHT = 56,
 	NINE = 57,
 	ZERO = 48,
+	NUM0 = 65438,
+	NUM1 = 65436,
+	NUM2 = 65433,
+	NUM3 = 65435,
+	NUM4 = 65430,
+	NUM5 = 65437,
+	NUM6 = 65432,
+	NUM7 = 65429,
+	NUM8 = 65431,
+	NUM9 = 65434,
 };
 
 /* MOUSE HOOK LINUX*/

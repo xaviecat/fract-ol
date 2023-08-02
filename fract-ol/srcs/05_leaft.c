@@ -69,8 +69,7 @@ void	leaft_set(t_cplx *leaft)
 				my_mlx_pixel_put(leaft->imgprt, leaft->px.x, leaft->px.y, \
 				0x00FFFFFF);
 			else
-				my_mlx_pixel_put(leaft->imgprt, leaft->px.x, leaft->px.y, \
-				0x00a2dcc7 * i / 10000);
+				color_pixels(leaft, i);
 			leaft->px.y++;
 		}
 		leaft->px.x++;

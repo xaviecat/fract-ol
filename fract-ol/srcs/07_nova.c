@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nova.c                                             :+:      :+:    :+:   */
+/*   07_nova.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:15:52 by xcharra           #+#    #+#             */
-/*   Updated: 2023/04/28 17:29:22 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/02 13:34:51 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	nova_init(t_cplx *nova, t_mlxsetup *set)
 {
 	nova->name = NOVA;
 	nova->sname = SNOVA;
+	nova->nstate = 0;
 	nova->px.x = 0;
 	nova->px.y = 0;
 	nova->z.x = 0;
@@ -33,6 +34,7 @@ void	nova_init(t_cplx *nova, t_mlxsetup *set)
 	nova->move.x = 0;
 	nova->move.y = 0;
 	nova->set = *set;
+	nova->pow = 0;
 	nova->imgprt = &nova->set.img;
 	nova->imgdsp = &nova->set.img2;
 	nova->selector = 0;
@@ -106,8 +108,7 @@ void	nova_set(t_cplx *nova)
 				my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
 				0x00000000);
 			else
-				my_mlx_pixel_put(nova->imgprt, nova->px.x, nova->px.y, \
-				0x00a2dcc7 * i / 1000000);
+				color_pixels(nova, i);
 			nova->px.y++;
 		}
 		nova->px.x++;

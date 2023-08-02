@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mendelbrot.c                                       :+:      :+:    :+:   */
+/*   02_mendelbrot.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:47:22 by xcharra           #+#    #+#             */
-/*   Updated: 2023/08/01 15:50:37 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/08/02 13:17:10 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	mandel_init(t_cplx *mandel, t_mlxsetup *set)
 {
 	mandel->name = MANDEL;
 	mandel->sname = SMANDEL;
+	mandel->nstate = 0;
 	mandel->px.x = 0;
 	mandel->px.y = 0;
 	mandel->z.x = 0;
@@ -75,14 +76,10 @@ void	mandel_set(t_cplx *mandel)
 			while (zmod2(&mandel->z) < 4. && i < mandel->imax && i++)
 				mandel_iter(mandel);
 			if (i == mandel->imax)
-				color_pixels(mandel, i);
-//				my_mlx_pixel_put(mandel->imgprt, mandel->px.x, mandel->px.y, \
-//				0x00FFFFFF);
+				my_mlx_pixel_put(mandel->imgprt, mandel->px.x, mandel->px.y, \
+				0x00FFFFFF);
 			else
 				color_pixels(mandel, i);
-
-//				my_mlx_pixel_put(mandel->imgprt, mandel->px.x, mandel->px.y, \
-//				0x00a2dcc7 * i / 10000);
 			mandel->px.y++;
 		}
 		mandel->px.x++;
