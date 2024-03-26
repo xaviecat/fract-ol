@@ -42,7 +42,11 @@ CC				:=	cc
 
 RM				:=	rm -rf
 
-CFLAGS			:=	-Wall -Wextra -Werror
+CFLAGS			:=	-Wall -Wextra -Werror -g3
+
+VALGRIND		:=	valgrind --leak-check=full --show-leak-kinds=all\
+				--track-fds=yes --show-mismatched-frees=yes --read-var-info=yes --track-origins=yes -s
+#				--default-suppressions=no
 
 ASAN_F			:=	#-g3 #-fsanitize=address
 
@@ -76,6 +80,9 @@ $(MLX_A)		:	FORCE
 
 $(LIB_A)		:	FORCE
 				make -j -C $(LIB_D)
+
+leaks			:	all
+				$(VALGRIND) ./$(NAME) $(ARGS)
 
 FORCE			:
 

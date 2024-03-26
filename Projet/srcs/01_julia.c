@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_julia.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:40:30 by xcharra           #+#    #+#             */
-/*   Updated: 2023/08/02 11:19:35 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/14 11:50:20 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 	julia->px.y = 0;
 	julia->z.x = 0;
 	julia->z.y = 0;
-	julia->c.x = -0.4;
-	julia->c.y = 0.6;
+	julia->c.x = -0.13;//0.25;//-0.249999;//-0.4;
+	julia->c.y = 0.79;//0.25;//0.484674;//0.6;
 	julia->r = 2;
 	julia->imax = 100;
 	julia->zoom = 1;

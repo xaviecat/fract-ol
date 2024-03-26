@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xcharra <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xcharra <xcharra@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:50:21 by xcharra           #+#    #+#             */
-/*   Updated: 2023/08/02 13:20:35 by xcharra          ###   ########.fr       */
+/*   Updated: 2023/11/14 11:51:29 by xcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "libft.h"
 # include "struct.h"
 # include "mlx.h"
-# define WIDTH		600//1920 // /* x */
-# define HEIGHT		600//1080 // /* y */
+# define WIDTH		800//16384//8192//4096//2048//1024//1920 // /* x */
+# define HEIGHT		800//16384//8192//4096//2048//1024//1080 // /* y */
 # define DBLMAX		1000000000000000000000.
 # define SJULIA		"Julia"
 # define SMANDEL	"Mandelbrot"
