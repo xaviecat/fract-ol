@@ -7,6 +7,8 @@
 ## About the project
 This will be the opportunity for you to get familiar with the MiniLibX, to discover or use the mathematical notion of complex numbers, to take a peek at the concept of optimization in computer graphics and practice event handling.
 
+<img align="right" src="">
+
 ### Mandatory part
 The program must offer the Julia set and the Mandelbrot set.
 - The mouse wheel zooms in and out, almost infinitely (within the limits of the
