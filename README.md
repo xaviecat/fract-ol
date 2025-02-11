@@ -42,4 +42,4 @@ better if you hack away on psychedelic effects.
 
 ## References
 
-<img align="right" src="">
+<img align="right" src="https://github.com/user-attachments/assets/eb0ca7c4-df52-4e50-999f-08a8b90dff1c">
