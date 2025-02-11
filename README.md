@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/9b8d5926-668d-4696-8d00-91dad4b73a67">
+  <img width="256" src="https://github.com/user-attachments/assets/9b8d5926-668d-4696-8d00-91dad4b73a67">
   <h1>fract-ol</h1>
   <p>Discover 2D programming and the psychedelic universe of fractals in this project, using minilibX.</p>
 </div>
