@@ -54,25 +54,13 @@ void	undo(int k, t_cplx	*fractal)
 void	move_n_c(int k, t_cplx *fractal)
 {
 	if (k == W)
-	{
 		fractal->c.y += 0.01 * fractal->zoom;
-		fractal->a += 0.01 * fractal->zoom;
-	}
 	else if (k == S)
-	{
 		fractal->c.y -= 0.01 * fractal->zoom;
-		fractal->a -= 0.01 * fractal->zoom;
-	}
 	else if (k == D)
-	{
 		fractal->c.x += 0.01 * fractal->zoom;
-		fractal->d += 0.01 * fractal->zoom;
-	}
 	else if (k == A)
-	{
 		fractal->c.x -= 0.01 * fractal->zoom;
-		fractal->d -= 0.01 * fractal->zoom;
-	}
 	else if (k == UP)
 		fractal->move.y += 0.05 * fractal->zoom;
 	else if (k == DOWN)
