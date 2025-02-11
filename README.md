@@ -5,12 +5,21 @@
 </div>
 
 ## About the project
-The `fract-ol` project is part of the 42 curriculum, focusing on creating graphically beautiful fractals using the MiniLibX library. It introduces students to 2D programming and the mathematical beauty of fractals.
+This will be the opportunity for you to get familiar with the MiniLibX, to discover or use the mathematical notion of complex numbers, to take a peek at the concept of optimization in computer graphics and practice event handling.
 
-### Key Requirements
-- Implement various fractal algorithms (Julia set, Mandelbrot set).
-- Provide interactive controls for zooming and navigating the fractals.
-- Ensure the program runs efficiently and handles user inputs smoothly.
+### Mandatory part
+The program must offer the Julia set and the Mandelbrot set.
+- The mouse wheel zooms in and out, almost infinitely (within the limits of the
+computer). This is the very principle of fractals.
+- The program must be able to create different Julia.
+- A parameter is passed on the command line to define what type of fractal will be
+displayed in a window.
+  - The program can handle more parameters to use them as rendering options.
+  - If no parameter is provided, or if the parameter is invalid, the program displays
+a list of available parameters and exits properly.
+- The program must use at least a few colors to show the depth of each fractal. It’s even
+better if you hack away on psychedelic effects.
+
 
 ### Skills learned
 - Advanced C programming.
@@ -28,3 +37,9 @@ The `fract-ol` project is part of the 42 curriculum, focusing on creating graphi
 - The zoom follows the actual mouse position. 
 - In addition to the zoom: moving the view by pressing the arrows keys. 
 - Make the color range shift.
+
+## Getting started
+
+## References
+
+<img align="right" src="">
