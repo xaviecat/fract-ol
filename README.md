@@ -7,7 +7,8 @@
 ## About the project
 This will be the opportunity for you to get familiar with the MiniLibX, to discover or use the mathematical notion of complex numbers, to take a peek at the concept of optimization in computer graphics and practice event handling.
 
-<img align="right" src="">
+<img align="right" width="256" src="https://github.com/user-attachments/assets/8cff14a0-98cf-45c9-b798-5cb7c0cdaba6">
+
 
 ### Mandatory part
 The program must offer the Julia set and the Mandelbrot set.
@@ -30,12 +31,15 @@ better if you hack away on psychedelic effects.
 - Memory management and optimization techniques.
 
 ### Bonus features
+<img align="right" width="256" src="https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c">
+<img align="right" width="256" src="https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1">
+
 - One or more different fractals
   - Burning Ship
   - Newton fractal
   - Nova fractal
   - Inverted Mandelbrot
-  - Julia set and Mandelbrot set at different power (2 to 12)
+  - Julia set and Mandelbrot set at different power (2 to 10)
 - The zoom follows the actual mouse position. 
 - In addition to the zoom: moving the view by pressing the arrows keys. 
 - Make the color range shift.
