@@ -138,7 +138,7 @@ $(MLX_A)	:	FORCE
 leaks		:	$(NAME)
 			$(VALGRIND) ./$(NAME) $(ARGS)
 
-run			:	$(NAME)
+run			:	all banner
 			./$(NAME) $(ARGS)
 
 fsan		:
