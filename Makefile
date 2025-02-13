@@ -1,105 +1,188 @@
-SRCS			:=	\
-					01_julia.c\
-					02_mendelbrot.c\
-					03_burning_ship.c\
-					04_leaf.c\
-					05_leaft.c\
-					06_newton.c\
-					07_nova.c\
-					colors.c\
-					fractol.c\
-					hook.c\
-					hook2.c\
-					hud.c\
-					math_utils.c\
-					math_utils2.c\
-					math_utils3.c\
-					mlx_utils.c\
+########################################################################################################################
+#                                                       VARIABLE                                                       #
+########################################################################################################################
+SRCS		:=	\
+				01_julia.c\
+				02_mendelbrot.c\
+				03_burning_ship.c\
+				04_leaf.c\
+				05_leaft.c\
+				06_newton.c\
+				07_nova.c\
+				colors.c\
+				fractol.c\
+				hook.c\
+				hook2.c\
+				hud.c\
+				math_utils.c\
+				math_utils2.c\
+				math_utils3.c\
+				mlx_utils.c\
 
-SRCS_D			:=	srcs/
+SRCS_D		:=	srcs/
 
-OBJS_D			:=	objs/
+OBJS_D		:=	objs/
 
-OBJS			:=	$(SRCS:%.c=$(OBJS_D)%.o)
+OBJS		:=	$(SRCS:%.c=$(OBJS_D)%.o)
 
-HEAD			:=	fractol.h
+INCS		:=	\
+				fractol.h\
 
-HEAD_D			:=	incs/
+INCS_D		:=	incs/
 
-NAME			:=	fractol
+DEPS_D		:=	deps/
 
-LIB				:=	libft.a
+DEPS		:=	$(SRCS:%.c=$(DEPS_D)%.d)
 
-LIB_D			:=	libft/
+NAME		:=	fractol
 
-LIB_H			:=	$(LIB_D)$(HEAD_D)
+########################################################################################################################
+#                                                         LIB                                                          #
+########################################################################################################################
+LIB			:=	libft.a
 
-LIB_A			:=	$(LIB_D)$(LIB)
+LIB_D		:=	libft
 
-MLX				:=	libmlx.a
+LIB_I		:=	$(LIB_D)/$(INCS_D)
 
-CC				:=	cc
+LIB_H		:=	$(LIB_I)libft.h
 
-RM				:=	rm -rf
+LIB_A		:=	$(LIB_D)/$(LIB)
 
-CFLAGS			:=	-Wall -Wextra -Werror -g3
+MLX			:=	libmlx.a
 
-VALGRIND		:=	valgrind --leak-check=full --show-leak-kinds=all\
+MLX_D		:=	MLX_Linux
+
+MLX_F		:=	-L$(MLX_D) -L/usr/lib -lmlx -lXext -lX11 -lm -lz
+
+MLX_I		:=	$(MLX_D)
+
+MLX_H		:=	$(MLX_I)/mlx.h
+
+MLX_A		:=	$(MLX_D)/$(MLX)
+
+########################################################################################################################
+#                                                        FLAGS                                                         #
+########################################################################################################################
+CC			:=	cc
+
+RM			:=	rm -rf
+
+IFLAGS		:=	-I$(INCS_D) -I$(LIB_I) -I$(MLX_I)
+
+DFLAGS		=	-MMD -MP -MT $@ -MF $(DEPS_D)$*.d
+
+DFLAGS_B	=	-MMD -MP -MT $@ -MF $(DEPS_B_D)$*.d
+
+CFLAGS		=	-Wall -Wextra -Werror -g3 $(IFLAGS)
+
+OFLAGS		:=	-Ofast -march=native -fomit-frame-pointer -funroll-loops
+
+ARGS		?=	Mandelbrot
+
+########################################################################################################################
+#                                                        DEBUG                                                         #
+########################################################################################################################
+DEBUG		=	no
+
+ifeq ($(DEBUG), yes)
+	CFLAGS	+=	-fsanitize=address
+endif
+
+IGN_LEAK	:=	valgrind_ignore_leaks.txt
+
+VALGRIND	:=	valgrind --leak-check=full --show-leak-kinds=all\
 				--track-fds=yes --show-mismatched-frees=yes --read-var-info=yes --track-origins=yes -s
 #				--default-suppressions=no
 
-ASAN_F			:=	#-g3 #-fsanitize=address
+########################################################################################################################
+#                                                        COLORS                                                        #
+########################################################################################################################
+BLUE		:=	\001\033[34m\002
 
-ARGS			?=	Julia
+BOLD		:=	\001\033[1m\002
 
-OPTI_F			:= -Ofast -march=native -fomit-frame-pointer -funroll-loops
+ITALIC		:=	\001\033[3m\002
 
-UNAME_S			:=	$(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-MLX_D			:=	MLX_Linux/
-MLX_F			:=	-L$(MLX_D) -L/usr/lib -lmlx -lXext -lX11 -lm -lz
-MLX_A			:=	$(MLX_D)$(MLX)
-endif
-ifeq ($(UNAME_S),Darwin)
-MLX_D			:=	MLX_MacOS/
-MLX_A			:=	$(MLX_D)$(MLX)
-MLX_F			:=	-framework OpenGL -framework AppKit
-endif
+RESET		:=	\001\033[0m\002
 
-all				:	$(NAME)
+PSEUDO		:=	$(BOLD)$(ITALIC)xcharra$(RESET)$(BLUE)
 
-run				:	all
-				./$(NAME) $(ARGS)
+########################################################################################################################
+#                                                        RULES                                                         #
+########################################################################################################################
+-include $(DEPS)
 
-$(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) Makefile
-				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)
+.DEFAULT_GOAL = all
 
-$(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.c $(HEAD_D)$(HEAD) $(MLX_A) $(LIB_A)
-				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -I$(HEAD_D) -I$(LIB_H) -I$(MLX_D) -c $< -o $@
+all			:	$(NAME) $(BONUS) banner
 
-$(OBJS_D)		:
-				mkdir -p $(OBJS_D)
+$(NAME)		:	$(OBJS) $(LIB_A) $(MLX_A)
+			$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)
 
-$(MLX_A)		:	FORCE
-				make -j -C $(MLX_D) >/dev/null 2>/dev/null
+$(OBJS)		:	$(OBJS_D)%.o: $(SRCS_D)%.c | $(OBJS_D) $(DEPS_D)
+			$(CC) $(CFLAGS) $(OFLAGS) $(DFLAGS) -c $< -o $@
 
-$(LIB_A)		:	FORCE
-				make -j -C $(LIB_D)
+$(OBJS_D)	:
+			mkdir -p $@
 
-leaks			:	all
-				$(VALGRIND) ./$(NAME) $(ARGS)
+$(DEPS_D)	:
+			mkdir -p $@
 
-FORCE			:
+$(LIB_A)	:	FORCE
+			$(MAKE) -C $(LIB_D)
 
-clean			:
-				$(RM) $(OBJS) $(OBJS_D)
-				make clean -C $(LIB_D) >/dev/null
+$(MLX_A)	:	FORCE
+			$(MAKE) -C $(MLX_D) 2>/dev/null
 
-fclean			:	clean
-				$(RM) $(NAME)
-				make fclean -C $(LIB_D) >/dev/null
-				make clean -C $(MLX_D) >/dev/null
+leaks		:	$(NAME)
+			$(VALGRIND) ./$(NAME) $(ARGS)
 
-re				:	fclean all
+run			:	$(NAME)
+			./$(NAME) $(ARGS)
 
-.PHONY			:	all clean fclean re FORCE
+fsan		:
+			$(MAKE) fclean $(NAME) DEBUG=yes
+
+########################################################################################################################
+#                                                    MISCELLANEOUS                                                     #
+########################################################################################################################
+banner		:
+			@echo -e '$(BLUE)'
+			@echo -e '                                   @@                                     '
+			@echo -e '                                 =@##@                                    '
+			@echo -e '                                 @#**%                                    '
+			@echo -e '                          @  @@%  %###%@@  =                              '
+			@echo -e '                          ==%#*#%%===***#+@%                              '
+			@echo -e '           @@= ==      =@@%#******###******#=                             '
+			@echo -e '          +#=%%%@@    =%********************@              =#             '
+			@echo -e '        @@#******%@   @#*#%=%#**************@        =@@@ @@#             '
+			@echo -e '   @@+ @#*##*****#=  @#=======@#***********#@     @@@%**###=%@=           '
+			@echo -e '@=@%*%=#*% =*****%  +%***#%=   =#**********@    @@%####*******%=          '
+			@echo -e ' = @#*#%@@ @*****#= =%#***#@   =#*********%   -@#*=====%******#@   @+@    '
+			@echo -e '    @*@=  =%******%=====*#@=   **********#=   *#***#%=  #*****@ =@%#*#@   '
+			@echo -e '          =%*******#####%@    @#*********#=   =%#***#@  %*****= %*#=#*#@=@'
+			@echo -e '           @@%=###**#@@@=    ##***********#@=======*%. =%*****####@ +@@=  '
+			@echo -e '             =@@ @@@=        @**************#%=%#**%=  =%****###%@        '
+			@echo -e '             =+              @***********$(PSEUDO)%#    @@%#*==@          '
+			@echo -e '                             %#*******#********#%@=       ==@@@           '
+			@echo -e '                              =%=#***===@%#**#=%                          '
+			@echo -e '                              @= @@%#=#=  @@@= @                          '
+			@echo -e '                                   =%**%@                                 '
+			@echo -e '                                    @##@=                                 '
+			@echo -e '                                     @@                                   '
+
+
+clean		:
+			$(RM) $(OBJS) $(OBJS_D) $(DEPS_D) $(OBJS_B_D) $(DEPS_B_D)
+
+fclean		:	clean
+			$(RM) $(NAME) $(NAME_B)
+			$(MAKE) fclean -C $(LIB_D)
+			$(MAKE) clean -C $(MLX_D)
+
+re			:	fclean all
+
+FORCE		:
+
+.PHONY		:	all debug leaks re clean fclean FORCE
