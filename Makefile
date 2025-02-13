@@ -171,6 +171,7 @@ banner		:
 			@echo -e '                                   =%**%@                                 '
 			@echo -e '                                    @##@=                                 '
 			@echo -e '                                     @@                                   '
+			@echo -e '$(RESET)'
 
 
 clean		:
