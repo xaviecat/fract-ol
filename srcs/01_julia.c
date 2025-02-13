@@ -20,8 +20,8 @@ void	julia_init(t_cplx *julia, t_mlxsetup *set)
 	julia->px.y = 0;
 	julia->z.x = 0;
 	julia->z.y = 0;
-	julia->c.x = -0.13;
-	julia->c.y = 0.79;
+	julia->c.x = -0.284;
+	julia->c.y = 0.920;
 	julia->r = 2;
 	julia->imax = 100;
 	julia->zoom = 1;

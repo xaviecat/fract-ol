@@ -50,6 +50,8 @@ VALGRIND		:=	valgrind --leak-check=full --show-leak-kinds=all\
 
 ASAN_F			:=	#-g3 #-fsanitize=address
 
+ARGS			?=	Julia
+
 OPTI_F			:= -Ofast -march=native -fomit-frame-pointer -funroll-loops
 
 UNAME_S			:=	$(shell uname -s)
@@ -65,6 +67,9 @@ MLX_F			:=	-framework OpenGL -framework AppKit
 endif
 
 all				:	$(NAME)
+
+run				:	all
+				./$(NAME) $(ARGS)
 
 $(NAME)			:	$(OBJS_D) $(OBJS) $(HEAD_D)$(HEAD) Makefile
 				$(CC) $(CFLAGS) $(ASAN_F) $(OPTI_F) -o $(NAME) $(OBJS) $(MLX_A) $(LIB_A) $(MLX_F)
