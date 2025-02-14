@@ -20,8 +20,8 @@
 # include "libft.h"
 # include "struct.h"
 # include "mlx.h"
-# define WIDTH		800//16384//8192//4096//2048//1024//1920 // /* x */
-# define HEIGHT		800//16384//8192//4096//2048//1024//1080 // /* y */
+# define WIDTH		1024//16384//8192//4096//2048//1024//1920 // /* x */
+# define HEIGHT		1024//16384//8192//4096//2048//1024//1080 // /* y */
 # define DBLMAX		1000000000000000000000.
 # define SJULIA		"Julia"
 # define SMANDEL	"Mandelbrot"
