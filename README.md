@@ -31,23 +31,37 @@ better if you hack away on psychedelic effects.
 - Memory management and optimization techniques.
 
 ### Bonus features
-<br>
-
 - One or more different fractals
-  - Burning Ship
+  - Multi Mandelbrot set
+  - Multi Julia set
+  - Burning Ship (and Multi Burning Ship)
+
+| Multi Mandelbrot                                                                                     | Multi Julia                                                                                     | Multi Burning Ship                                                                                     |
+|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| ![Multi Mandelbrot](https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c) | ![Multi Julia](https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1) | ![Multi Burning Ship](https://github.com/user-attachments/assets/7a2e0611-f1c3-45f1-8f5d-e96ede7197fc) |
+| $z$ and $c$ are complexes numbers                                                                    | $z$ and $c$ are complexes numbers                                                               | $z$ and $c$ are complexes numbers                                                                      |
+| $z_{0} = 0$                                                                                          | $z_{0}$ pixel position                                                                          | $z_{0} = 0$                                                                                            |
+| $z_{n + 1} = z_{n}^p + c$                                                                            | $z_{n + 1} = z_{n}^p + c$                                                                       | $z_{n + 1} =  (\lvert z_{n}\lvert)^p + c$                                                              |
+| $c$ : pixel position                                                                                 | $c$ : arbitrary choosen complexe number                                                         | $c$ : pixel position                                                                                   |
+| $p$ : power (here from 2 to 10)                                                                      | $p$ : power (here from 2 to 10)                                                                 | $p$ : power (here from 2 to 10)                                                                        |
   - Newton fractal
   - Nova fractal
   - Inverted Mandelbrot
-  - Julia set and Mandelbrot set at different power (2 to 10)
 - The zoom follows the actual mouse position. 
 - In addition to the zoom: moving the view by pressing the arrows keys. 
 - Make the color range shift.
 
-<div align="center">
-  <img width="256" src="https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c">
-  <img width="256" src="https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1">
-  <img width="256" src="https://github.com/user-attachments/assets/7a2e0611-f1c3-45f1-8f5d-e96ede7197fc">
-</div>
+
+
+
+
+[//]: # (![Multi Mandelbrot]&#40;https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c&#41;)
+[//]: # (![Multi Julia]&#40;https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1&#41;)
+[//]: # (![Multi Burning Ship]&#40;https://github.com/user-attachments/assets/7a2e0611-f1c3-45f1-8f5d-e96ede7197fc&#41;)
+[//]: # (  <img width="256" src="https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c">)
+[//]: # (  <img width="256" src="https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1">)
+[//]: # (  <img width="256" src="https://github.com/user-attachments/assets/7a2e0611-f1c3-45f1-8f5d-e96ede7197fc">)
+
 
 ## Getting started
 
