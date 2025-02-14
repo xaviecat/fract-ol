@@ -31,8 +31,7 @@ better if you hack away on psychedelic effects.
 - Memory management and optimization techniques.
 
 ### Bonus features
-<img align="right" width="256" src="https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c">
-<img align="right" width="256" src="https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1">
+<br>
 
 - One or more different fractals
   - Burning Ship
@@ -43,6 +42,12 @@ better if you hack away on psychedelic effects.
 - The zoom follows the actual mouse position. 
 - In addition to the zoom: moving the view by pressing the arrows keys. 
 - Make the color range shift.
+
+<div align="center">
+  <img width="256" src="https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c">
+  <img width="256" src="https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1">
+  <img width="256" src="https://github.com/user-attachments/assets/7a2e0611-f1c3-45f1-8f5d-e96ede7197fc">
+</div>
 
 ## Getting started
 
