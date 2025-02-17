@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="256" src="https://github.com/user-attachments/assets/9b8d5926-668d-4696-8d00-91dad4b73a67">
+  <img width="256" src="assets/julia.gif">
   <h1>fract-ol</h1>
   <p>Discover 2D programming and the psychedelic universe of fractals in this project, using minilibX.</p>
 </div>
@@ -7,7 +7,7 @@
 ## About the project
 This will be the opportunity for you to get familiar with the MiniLibX, to discover or use the mathematical notion of complex numbers, to take a peek at the concept of optimization in computer graphics and practice event handling.
 
-<img align="right" width="256" src="https://github.com/user-attachments/assets/8cff14a0-98cf-45c9-b798-5cb7c0cdaba6">
+<img align="right" width="256" src="assets/demo.gif">
 
 
 ### Mandatory part
@@ -32,18 +32,32 @@ better if you hack away on psychedelic effects.
 
 ### Bonus features
 - One or more different fractals
-  - Multi Mandelbrot set
-  - Multi Julia set
-  - Burning Ship (and Multi Burning Ship)
 
-| Multi Mandelbrot                                                                                     | Multi Julia                                                                                     | Multi Burning Ship                                                                                     |
-|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| ![Multi Mandelbrot](https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c) | ![Multi Julia](https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1) | ![Multi Burning Ship](https://github.com/user-attachments/assets/7a2e0611-f1c3-45f1-8f5d-e96ede7197fc) |
-| $z$ and $c$ are complexes numbers                                                                    | $z$ and $c$ are complexes numbers                                                               | $z$ and $c$ are complexes numbers                                                                      |
-| $z_{0} = 0$                                                                                          | $z_{0}$ pixel position                                                                          | $z_{0} = 0$                                                                                            |
-| $z_{n + 1} = z_{n}^p + c$                                                                            | $z_{n + 1} = z_{n}^p + c$                                                                       | $z_{n + 1} =  (\lvert z_{n}\lvert)^p + c$                                                              |
-| $c$ : pixel position                                                                                 | $c$ : arbitrary choosen complexe number                                                         | $c$ : pixel position                                                                                   |
-| $p$ : power (here from 2 to 10)                                                                      | $p$ : power (here from 2 to 10)                                                                 | $p$ : power (here from 2 to 10)                                                                        |
+| Multi Mandelbrot                                 | Multi Julia                             | Multi Burning Ship                                   |
+|--------------------------------------------------|-----------------------------------------|------------------------------------------------------|
+| ![Multi Mandelbrot](assets/multi-mandelbrot.gif) | ![Multi Julia](assets/multi-julia.gif)  | ![Multi Burning Ship](assets/multi-burning-ship.gif) |
+| $z$ and $c$ are complexes numbers                | $z$ and $c$ are complexes numbers       | $z$ and $c$ are complexes numbers                    |
+| $z_{0} = 0$                                      | $z_{0}$ pixel position                  | $z_{0} = 0$                                          |
+| $z_{n + 1} = z_{n}^p + c$                        | $z_{n + 1} = z_{n}^p + c$               | $z_{n + 1} =  \lvert z_{n}\lvert^p + c$              |
+| $c$ : pixel position                             | $c$ : arbitrary choosen complexe number | $c$ : pixel position                                 |
+| $p$ : power (here from 2 to 10)                  | $p$ : power (here from 2 to 10)         | $p$ : power (here from 2 to 10)                      |
+
+| Multi Inverted Mandelbrot                                          | Newton                                         | Nova                                          |
+|--------------------------------------------------------------------|------------------------------------------------|-----------------------------------------------|
+| ![Multi Inverted Mandelbrot](assets/multi-inverted-mandelbrot.gif) | ![Newton](assets/newton.jpg)                   | ![Nova](assets/nova.jpg)                      |
+| $z$ and $c$ are complexes numbers                                  | $z$ are complexes numbers                      |                                               |
+| $z_{0} = 0$                                                        | $z_{0}$ pixel position                         | $z_{0}$ pixel position                        |
+| $z_{n + 1} = z_{n}^p + \frac{1}{c}$                                | $$z_{n + 1} = z_n - \frac{z_n^3 - 1}{3z_n^2}$$ | $$z_{n + 1} = z_n - \frac{z_n^3 - 1}{3z_n^2}$$ |
+| $c$ : pixel position                                               |                                                |                                               |
+| $p$ : power (here from 2 to 10)                                    |                                                |                                               |
+
+
+
+
+
+
+
+  - 
   - Newton fractal
   - Nova fractal
   - Inverted Mandelbrot
@@ -54,7 +68,9 @@ better if you hack away on psychedelic effects.
 
 
 
-
+[//]: # (![Newton]&#40;https://github.com/user-attachments/assets/49d815b3-c687-4cc2-830f-8fa7548a1db3&#41;)
+[//]: # (![Nova]&#40;https://github.com/user-attachments/assets/2b271d73-9d31-4c09-8ff7-208e9ab3fb03&#41;)
+[//]: # (![mandelbrot-inverted-pow]&#40;https://github.com/user-attachments/assets/1bc0a56f-4a0f-4a0f-a513-dc7424282153&#41;)
 [//]: # (![Multi Mandelbrot]&#40;https://github.com/user-attachments/assets/f91d527d-e99a-44af-ab39-c072ad4d107c&#41;)
 [//]: # (![Multi Julia]&#40;https://github.com/user-attachments/assets/e340f792-e6dd-4e20-986b-213319858dd1&#41;)
 [//]: # (![Multi Burning Ship]&#40;https://github.com/user-attachments/assets/7a2e0611-f1c3-45f1-8f5d-e96ede7197fc&#41;)
